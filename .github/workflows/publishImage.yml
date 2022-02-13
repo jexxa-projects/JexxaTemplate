@@ -1,5 +1,5 @@
 # This workflow creates a new docker image as soon as a new tag is created
-name: Neues Docker Image
+name: Publish Image
 
 on:
   create:
