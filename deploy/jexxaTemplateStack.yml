@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+
+  JexxaTemplate:
+    image: ghcr.io/repplix/jexxatemplate:latest
+    ports:
+      - 7500:7500
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -nv -t1 --spider 'http://localhost:7500/BoundedContext/isRunning/'" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+  ActiveMQ:
+    image: alexcheng/activemq-artemis
+    restart: always
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+
+  Postgres:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+
+  SwaggerUI:
+    image: swaggerapi/swagger-ui:latest
+    restart: always
+    ports:
+      - '8080:8080'
+
+volumes:
+  postgres-data:
+
