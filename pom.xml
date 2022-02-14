@@ -5,7 +5,7 @@
 
   <groupId>io.jexxa</groupId>
   <artifactId>jexxatemplate</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <!-- ************************************************************************ -->
   <!-- TODO: Change your project name here. Following conventions apply         -->
@@ -33,7 +33,7 @@
     <connection>scm:git:https://github.com/repplix/JexxaTemplate.git</connection>
     <url>https://github.com/repplix/JexxaTemplate</url>
     <developerConnection>scm:git:https://github.com/repplix/JexxaTemplate.git</developerConnection>
-    <tag>jexxatemplate-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
