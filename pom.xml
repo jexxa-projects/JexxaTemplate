@@ -3,16 +3,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.jexxa</groupId>
+
+  <!-- **************************************************************************** -->
+  <!-- TODO (REQUIRED): Change your project name, groupId, artifactId, ... here.    -->
+  <!-- **************************************************************************** -->
+  <name>JexxaTemplate</name>
+  <groupId>io.jexxa.template</groupId>
   <artifactId>jexxatemplate</artifactId>
   <version>1.0.1-SNAPSHOT</version>
 
-  <!-- ************************************************************************ -->
-  <!-- TODO: Change your project name here. Following conventions apply         -->
-  <!-- 1. Name of the project == Name of repository                             -->
-  <!-- 2. Name of the project == Name of main class                             -->
-  <!-- ************************************************************************ -->
-  <name>JexxaTemplate</name>
   <url>https://www.jexxa.io</url>
 
   <description>JexxaTemplate - Create your own Jexxa Application</description>
@@ -29,6 +28,9 @@
     </developer>
   </developers>
 
+  <!-- **************************************************************************** -->
+  <!-- TODO (REQUIRED): Change the scm section to include correct repository.       -->
+  <!-- **************************************************************************** -->
   <scm>
     <connection>scm:git:https://github.com/repplix/JexxaTemplate.git</connection>
     <url>https://github.com/repplix/JexxaTemplate</url>
@@ -37,13 +39,29 @@
   </scm>
 
   <properties>
-    <!-- ************************************************ -->
-    <!-- Change your application specific settings here   -->
-    <!-- ************************************************ -->
-    <main.class>io.jexxa.jexxatemplate.${project.name}</main.class>
+    <!-- ************************************************************* -->
+    <!-- TODO (OPTIONAL): Change your project specific settings here   -->
+    <!-- ************************************************************* -->
+    <main.class>${groupId}.${project.name}</main.class>
     <main.arguments>-jdbc</main.arguments>
     <main.http.port>7000</main.http.port>
     <docker.base.image>openjdk:17</docker.base.image>
+
+    <!-- version of dependencies -->
+    <jexxa-web.release.version>4.1.0</jexxa-web.release.version>
+    <addend.version>1.1.0</addend.version>
+    <activemq.client.version>5.16.3</activemq.client.version>
+    <postgres.version>42.3.2</postgres.version>
+    <slf4j.simple.version>1.7.36</slf4j.simple.version>
+
+    <!-- version of test dependencies -->
+    <junit.platform.launcher.version>1.8.2</junit.platform.launcher.version>
+    <junit.jupiter.engine.version>5.8.2</junit.jupiter.engine.version>
+    <junit.jupiter.params.version>5.8.2</junit.jupiter.params.version>
+    <awaitility.version>4.1.1</awaitility.version>
+    <h2database.version>2.1.210</h2database.version>
+    <unirest.java.version>3.13.6</unirest.java.version>
+    <jexxa-test.release.version>4.1.0</jexxa-test.release.version>
 
     <!-- server-name used in mavens settings.xml to find to your repository credentials -->
     <project.scm.id>github</project.scm.id>
@@ -72,27 +90,11 @@
     <maven.jib.plugin>3.2.0</maven.jib.plugin>
     <maven.shade.plugin>3.2.4</maven.shade.plugin>
 
-    <!-- version of dependencies -->
-    <jexxa-web.release.version>4.1.0</jexxa-web.release.version>
-    <addend.version>1.1.0</addend.version>
-    <activemq.client.version>5.16.3</activemq.client.version>
-    <postgres.version>42.3.2</postgres.version>
-    <slf4j.simple.version>1.7.36</slf4j.simple.version>
-
-    <!-- version of test dependencies -->
-    <junit.platform.launcher.version>1.8.2</junit.platform.launcher.version>
-    <junit.jupiter.engine.version>5.8.2</junit.jupiter.engine.version>
-    <junit.jupiter.params.version>5.8.2</junit.jupiter.params.version>
-    <awaitility.version>4.1.1</awaitility.version>
-    <h2database.version>2.1.210</h2database.version>
-    <unirest.java.version>3.13.6</unirest.java.version>
-    <jexxa-test.release.version>4.1.0</jexxa-test.release.version>
-
   </properties>
 
-  <!-- **************************************** -->
-  <!-- Add additional dependencies if required  -->
-  <!-- **************************************** -->
+  <!-- ********************************************************* -->
+  <!-- TODO (OPTIONAL): Add additional dependencies if required  -->
+  <!-- ********************************************************* -->
   <dependencies>
     <!-- dependencies for application core -->
     <dependency>
@@ -126,9 +128,9 @@
     </dependency>
 
 
-    <!-- ********************** -->
-    <!-- dependencies for tests -->
-    <!-- ********************** -->
+    <!-- *************************************** -->
+    <!-- TODO (OPTIONAL): dependencies for tests -->
+    <!-- *************************************** -->
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-launcher</artifactId>
@@ -180,9 +182,11 @@
 
   </dependencies>
 
-  <!-- *********************************************************** -->
-  <!-- Change following lines only if you are familiar with maven  -->
-  <!-- *********************************************************** -->
+  <!-- ********************************************************************** -->
+  <!-- IMPORTANT: Change following lines only if you are familiar with maven  -->
+  <!-- IMPORTANT: If you really need to adjust following lines, please check  -->
+  <!-- IMPORTANT: if you should start your maven project.                     -->
+  <!-- ********************************************************************** -->
   <profiles>
     <profile>     <!-- add tag developer image -->
       <id>localDockerImage</id>

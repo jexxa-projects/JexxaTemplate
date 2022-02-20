@@ -8,6 +8,10 @@ Template to start your own Jexxa application
 
 ### Maven:
 
+In case you use this repository as template, please adjust the following sections in [pom.xml](pom.xml):
+- `TODO (REQUIRED): Change your project name, groupId, artifactId, ... here.`
+- `TODO (REQUIRED): Change the scm section to include correct repository.`
+
 #### Build project
 ```shell
 mvn clean install
@@ -42,4 +46,9 @@ mvn -PlocalDockerImage jib:dockerBuild
     
 ## Docker-Stacks 
 
+- [developerStack.yml](deploy/developerStack.yml)
+  - Includes all required dependencies to run the application during development on your local machine
+
+- [jexxaTemplateStack.yml](deploy/jexxaTemplateStack.yml)
+  - Stack to run the application as stack in your production environment 
 
