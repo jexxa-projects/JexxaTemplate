@@ -2,35 +2,63 @@ version: "3.7"
 
 services:
 
-  JexxaTemplate:
-    image: ghcr.io/repplix/jexxatemplate:1.latest
-    ports:
-      - 7500:7500
+  ### Anwendung ###
 
+  JexxaTemplate: # TODO: Change <ProjectName> (CamelCase)
+    image: ghcr.io/repplix/jexxatemplate:latest # TODO: change image location ghcr.io/shs-it/<projectname>:latest
+    ports:
+      - "7500:7500" # TODO: Adjust HTTP Port "<free HTTP-Port>:7500"
+      - "8081:8081" # TODO: Adjust HTTPS Port "<free HTTPS-Port>:8081"
+    depends_on:
+      - ActiveMQ
+      - Postgres
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -nv -t1 --spider 'http://localhost:7500/BoundedContext/isRunning/'"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+    deploy:
+      replicas: 2
+      update_config:
+        order: start-first        # Configure rolling updates
+        failure_action: rollback
+
+      rollback_config:
+        parallelism: 1            # Rollback config
+        order: start-first
+
+      restart_policy:
+        condition: on-failure
+
+
+
+  ### Infrastruktur ###
 
   ActiveMQ:
-    image: alexcheng/activemq-artemis
-    restart: always
+    image: rmohr/activemq
+    #restart: always
     ports:
-      - "61616:61616"
-      - "8161:8161"
+      - "62616:61616" # TODO: Adjust Port"<free Port>:61616"
+      - "8261:8161" # TODO: Adjust Port"<free Port>:8161"
 
   Postgres:
-    image: postgres:latest
-    restart: always
+    image: postgres:14.0-alpine
+    #restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432" # TODO: Adjust Port "<free Port>:5432"
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
 
-  SwaggerUI:
-    image: swaggerapi/swagger-ui:latest
-    restart: always
-    ports:
-      - '8080:8080'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres-data:
