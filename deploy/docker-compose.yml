@@ -8,7 +8,6 @@ services:
     image: ghcr.io/repplix/jexxatemplate:latest # TODO: change image location ghcr.io/shs-it/<projectname>:latest
     ports:
       - "7501:7500" # TODO: Adjust HTTP Port "<free HTTP-Port>:7500"
-      - "8081:8081" # TODO: Adjust HTTPS Port "<free HTTPS-Port>:8081"
     depends_on:
       - ActiveMQ
       - Postgres
