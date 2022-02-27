@@ -39,19 +39,25 @@
   </scm>
 
   <properties>
+    <image.repository.root>ghcr.io/repplix</image.repository.root>
     <!-- ************************************************************* -->
     <!-- TODO (OPTIONAL): Change your project specific settings here   -->
     <!-- ************************************************************* -->
-    <main.class>${groupId}.${project.name}</main.class>
+    <main.class>${project.groupId}.${project.name}</main.class>
     <main.arguments>-jdbc</main.arguments>
-    <main.http.port>7000</main.http.port>
-    <docker.base.image>openjdk:17</docker.base.image>
+    <main.http.port>7500</main.http.port>
+    <main.https.port>8081</main.https.port>
+    <docker.base.image>eclipse-temurin:17-alpine</docker.base.image>
+
+    <!-- target/compiler configuration  -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
 
     <!-- version of dependencies -->
-    <jexxa-web.release.version>4.1.0</jexxa-web.release.version>
+    <jexxa-web.release.version>4.1.1</jexxa-web.release.version>
     <addend.version>1.1.0</addend.version>
-    <activemq.client.version>5.16.3</activemq.client.version>
-    <postgres.version>42.3.2</postgres.version>
+    <activemq.client.version>5.16.4</activemq.client.version>
+    <postgres.version>42.3.3</postgres.version>
     <slf4j.simple.version>1.7.36</slf4j.simple.version>
 
     <!-- version of test dependencies -->
@@ -61,28 +67,28 @@
     <awaitility.version>4.1.1</awaitility.version>
     <h2database.version>2.1.210</h2database.version>
     <unirest.java.version>3.13.6</unirest.java.version>
-    <jexxa-test.release.version>4.1.0</jexxa-test.release.version>
+    <jexxa-test.release.version>4.1.1</jexxa-test.release.version>
 
     <!-- server-name used in mavens settings.xml to find to your repository credentials -->
     <project.scm.id>github</project.scm.id>
 
-    <!-- target/compiler configuration  -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+    <!--information for filtered sources  -->
+    <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
     <!--version of  maven plugins  -->
     <maven.clean.plugin>3.1.0</maven.clean.plugin>
-    <maven.compiler.plugin>3.9.0</maven.compiler.plugin>
-    <maven.deploy.plugin>3.0.0-M1</maven.deploy.plugin>
+    <maven.compiler.plugin>3.10.0</maven.compiler.plugin>
+    <maven.deploy.plugin>3.0.0-M2</maven.deploy.plugin>
     <maven.failsafe.plugin>3.0.0-M5</maven.failsafe.plugin>
     <maven.install.plugin>3.0.0-M1</maven.install.plugin>
     <maven.jar.plugin>3.2.2</maven.jar.plugin>
     <maven.resources.plugin>3.2.0</maven.resources.plugin>
-    <maven.site.plugin>3.10.0</maven.site.plugin>
+    <maven.site.plugin>3.11.0</maven.site.plugin>
     <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
     <maven.release.plugin>3.0.0-M1</maven.release.plugin>
     <maven.jacoco.plugin>0.8.7</maven.jacoco.plugin>
-    <maven.reports.plugin>3.1.2</maven.reports.plugin>
+    <maven.reports.plugin>3.2.1</maven.reports.plugin>
     <maven.enforcer.plugin>3.0.0</maven.enforcer.plugin>
     <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
     <maven.versions.plugin>2.9.0</maven.versions.plugin>
@@ -299,6 +305,16 @@
     </resources>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>jks</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
+      </plugin>
+
       <!-- Sets all docker tags -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -414,52 +430,6 @@
         <version>${maven.shade.plugin}</version>
         <executions>
           <execution>
-            <id>telegrameinspieler</id>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-
-            <configuration>
-
-              <finalName>telegrameinspieler-jar-with-dependencies</finalName>
-
-              <filters>
-                <filter>
-                  <artifact>*:*</artifact>
-                  <excludes>
-                    <exclude>module-info.class</exclude>
-                    <exclude>about.html</exclude>
-                    <exclude>META-INF/MANIFEST.MF</exclude>
-                    <exclude>META-INF/*.txt</exclude>
-                    <exclude>META-INF/NOTICE</exclude>
-                    <exclude>META-INF/LICENSE</exclude>
-                  </excludes>
-                </filter>
-                <filter>
-                  <artifact>io.jexxa:jexxa-core</artifact>
-                  <excludes>
-                    <exclude>*.properties</exclude>
-                  </excludes>
-                </filter>
-                <filter>
-                  <artifact>io.jexxa:jexxa-core</artifact>
-                  <excludes>
-                    <exclude>*.properties</exclude>
-                  </excludes>
-                </filter>
-
-                <filter>
-                  <artifact>org.eclipse.jetty:*</artifact>
-                  <excludes>
-                    <exclude>**/encoding.properties</exclude>
-                  </excludes>
-                </filter>
-              </filters>
-            </configuration>
-          </execution>
-
-          <execution>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
@@ -545,7 +515,7 @@
             <image>${docker.base.image}</image>
           </from>
           <to>
-            <image>ghcr.io/repplix/${project.artifactId}:${project.version}</image>
+            <image>${image.repository.root}/${project.artifactId}:${project.version}</image>
             <tags>
               <tag>${dockerTag}</tag>
               <tag>${dockerMajorTag}</tag>
@@ -564,6 +534,7 @@
 
             <ports>
               <port>${main.http.port}</port>
+              <port>${main.https.port}</port>
             </ports>
           </container>
         </configuration>

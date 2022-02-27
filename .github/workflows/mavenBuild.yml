@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  linux_build:
-    name: Linux-Test
+  maven_build:
+    name: Maven-Build (Linux)
     runs-on: ubuntu-latest
 
     # Service containers to run with `runner-job`
@@ -42,5 +42,3 @@ jobs:
           java-version: 17
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
-

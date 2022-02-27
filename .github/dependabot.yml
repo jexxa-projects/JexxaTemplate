@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Enable version updates for maven
+  - package-ecosystem: "maven"
+    # Look for `pom.xml` in the `root` directory
+    directory: "/"
+    open-pull-requests-limit: 10
+    # Check for updates once daily
+    schedule:
+      interval: "daily"
