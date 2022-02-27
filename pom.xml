@@ -10,7 +10,7 @@
   <name>JexxaTemplate</name>
   <groupId>io.jexxa.template</groupId>
   <artifactId>jexxatemplate</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
 
   <url>https://www.jexxa.io</url>
 
@@ -35,7 +35,7 @@
     <connection>scm:git:https://github.com/repplix/JexxaTemplate.git</connection>
     <url>https://github.com/repplix/JexxaTemplate</url>
     <developerConnection>scm:git:https://github.com/repplix/JexxaTemplate.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>jexxatemplate-1.0.1</tag>
   </scm>
 
   <properties>
