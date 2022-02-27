@@ -8,7 +8,7 @@
   <!-- TODO (REQUIRED): Change your project name, groupId, artifactId, ... here.    -->
   <!-- **************************************************************************** -->
   <name>JexxaTemplate</name>
-  <groupId>io.jexxa.template</groupId>
+  <groupId>io.jexxa.jexxatemplate</groupId>
   <artifactId>jexxatemplate</artifactId>
   <version>1.0.1-SNAPSHOT</version>
 

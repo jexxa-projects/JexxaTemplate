@@ -16,7 +16,7 @@ In case you use this repository as template, please adjust the following section
 ```shell
 mvn clean install
 
-java -jar -Dio.jexxa.config.import=/jexxatemplate-developer.properties target/jexxatemplate-jar-with-dependencies.jar 
+java -jar -Dio.jexxa.config.import=/jexxa-developer.properties target/jexxatemplate-jar-with-dependencies.jar 
 ```
 
 #### Create new Release
@@ -49,6 +49,18 @@ mvn -PlocalDockerImage jib:dockerBuild
 - [developerStack.yml](deploy/developerStack.yml)
   - Includes all required dependencies to run the application during development on your local machine
 
-- [jexxaTemplateStack.yml](deploy/jexxaTemplateStack.yml)
+- [jexxaTemplateStack.yml](deploy/docker-compose.yml)
   - Stack to run the application as stack in your production environment 
 
+
+
+## Configure Secrets 
+
+```shell
+echo 'admin' | docker secret create jdbcUser -
+echo 'admin' | docker secret create jdbcPassword -
+echo 'artemis' | docker secret create jndiUser -
+echo 'password' | docker secret create jndiPassword -
+```
+
+docker stack deploy --compose-file ./deploy/docker-compose.yml jexxatemplate
