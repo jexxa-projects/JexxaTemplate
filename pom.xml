@@ -10,7 +10,7 @@
   <name>JexxaTemplate</name>
   <groupId>io.jexxa.jexxatemplate</groupId>
   <artifactId>jexxatemplate</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <url>https://www.jexxa.io</url>
 
@@ -88,7 +88,7 @@
     <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
     <maven.release.plugin>3.0.0-M1</maven.release.plugin>
     <maven.jacoco.plugin>0.8.7</maven.jacoco.plugin>
-    <maven.reports.plugin>3.2.1</maven.reports.plugin>
+    <maven.reports.plugin>3.2.2</maven.reports.plugin>
     <maven.enforcer.plugin>3.0.0</maven.enforcer.plugin>
     <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
     <maven.versions.plugin>2.9.0</maven.versions.plugin>
