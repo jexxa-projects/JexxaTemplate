@@ -1,11 +1,10 @@
 package io.jexxa.jexxatemplate;
 
+import io.jexxa.core.JexxaMain;
+import io.jexxa.infrastructure.drivingadapter.rest.RESTfulRPCAdapter;
 import io.jexxa.jexxatemplate.applicationservice.BookStoreService;
 import io.jexxa.jexxatemplate.domainservice.ReferenceLibrary;
 import io.jexxa.jexxatemplate.infrastructure.support.JsonRecordConverter;
-import io.jexxa.core.JexxaMain;
-import io.jexxa.infrastructure.drivingadapter.jmx.JMXAdapter;
-import io.jexxa.infrastructure.drivingadapter.rest.RESTfulRPCAdapter;
 
 public final class JexxaTemplate
 {
@@ -24,9 +23,8 @@ public final class JexxaTemplate
                 .bootstrap(ReferenceLibrary.class).with(ReferenceLibrary::addLatestBooks)
 
                 .bind(RESTfulRPCAdapter.class).to(BookStoreService.class)
-                .bind(JMXAdapter.class).to(BookStoreService.class)
 
-                .bind(JMXAdapter.class).to(jexxaMain.getBoundedContext())
+                .bind(RESTfulRPCAdapter.class).to(jexxaMain.getBoundedContext())
 
                 .start()
 
