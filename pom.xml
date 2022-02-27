@@ -39,6 +39,9 @@
   </scm>
 
   <properties>
+    <!-- **************************************************************************** -->
+    <!-- TODO (REQUIRED): Change the repository to upload your image.                 -->
+    <!-- **************************************************************************** -->
     <image.repository.root>ghcr.io/repplix</image.repository.root>
     <!-- ************************************************************* -->
     <!-- TODO (OPTIONAL): Change your project specific settings here   -->
