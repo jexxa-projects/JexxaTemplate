@@ -292,9 +292,6 @@
     </testResources>
 
     <plugins>
-
-
-      <!--- Configure Jacoco for IT tests-->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -496,6 +493,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven.jar.plugin}</version>
 
         <configuration>
           <archive>
