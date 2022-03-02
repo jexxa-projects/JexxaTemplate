@@ -43,13 +43,14 @@
     <!-- TODO (REQUIRED): Change the repository to upload your image.                 -->
     <!-- **************************************************************************** -->
     <image.repository.root>ghcr.io/repplix</image.repository.root>
+    <test.coverage.minimum>0.00</test.coverage.minimum>     <!-- Minimum Test coverage in %-->
+    <!--<test.integration>true</test.integration>-->               <!-- If you want to run integration tests set to true, otherwise false-->
     <!-- ************************************************************* -->
     <!-- TODO (OPTIONAL): Change your project specific settings here   -->
     <!-- ************************************************************* -->
     <main.class>${project.groupId}.${project.name}</main.class>
-    <main.arguments>-jdbc</main.arguments>
-    <main.http.port>7500</main.http.port>
-    <main.https.port>8081</main.https.port>
+    <docker.http.port>7500</docker.http.port>
+    <docker.https.port>8081</docker.https.port>
     <docker.base.image>eclipse-temurin:17-alpine</docker.base.image>
 
     <!-- target/compiler configuration  -->
@@ -71,6 +72,7 @@
     <h2database.version>2.1.210</h2database.version>
     <unirest.java.version>3.13.6</unirest.java.version>
     <jexxa-test.release.version>4.1.1</jexxa-test.release.version>
+    <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
 
     <!-- server-name used in mavens settings.xml to find to your repository credentials -->
     <project.scm.id>github</project.scm.id>
@@ -98,10 +100,18 @@
     <maven.build.helper.version>3.3.0</maven.build.helper.version>
     <maven.jib.plugin>3.2.0</maven.jib.plugin>
     <maven.shade.plugin>3.2.4</maven.shade.plugin>
+    <maven.exec.plugin>3.0.0</maven.exec.plugin>
 
-  </properties>
+    <context.command.start>
+          -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.plugin.version}/org.jacoco.agent-${jacoco.plugin.version}-runtime.jar=destfile=jacoco-it-app.exec,port=6300,output=tcpserver
+          -jar -Dio.jexxa.config.import=/jexxa-test.properties ${project.build.directory}/${project.artifactId}-jar-with-dependencies.jar
+     </context.command.start>
+   <context.command.stop>
+     -version
+   </context.command.stop>
+ </properties>
 
-  <!-- ********************************************************* -->
+ <!-- ********************************************************* -->
   <!-- TODO (OPTIONAL): Add additional dependencies if required  -->
   <!-- ********************************************************* -->
   <dependencies>
@@ -189,6 +199,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>org.jacoco.agent</artifactId>
+      <version>${jacoco.plugin.version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <!-- ********************************************************************** -->
@@ -196,45 +213,6 @@
   <!-- IMPORTANT: If you really need to adjust following lines, please check  -->
   <!-- IMPORTANT: if you should start your maven project.                     -->
   <!-- ********************************************************************** -->
-  <profiles>
-    <profile>     <!-- add tag developer image -->
-      <id>localDockerImage</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <dockerTag>developerImage</dockerTag>
-        <dockerMajorTag>developerImage</dockerMajorTag>
-        <dockerMajorMinorTag>developerImage</dockerMajorMinorTag>
-      </properties>
-
-
-    </profile>
-    <profile>
-      <id>dockerDeveloperTags</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-
-      <build>
-      <plugins>
-
-        <!-- When calling maven release:prepare and release:perform execute only install and NOT deploy. Deploy publishes the image
-             which should be bone by build server-->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <configuration>
-            <goals>install</goals>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-          </configuration>
-        </plugin>
-      </plugins>
-
-      </build>
-    </profile>
-  </profiles>
-
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults -->
       <plugins>
@@ -307,7 +285,92 @@
       </resource>
     </resources>
 
+    <testResources>
+      <testResource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
     <plugins>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${maven.exec.plugin}</version>
+        <executions>
+          <execution>
+            <id>pre-integration-test</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <async>true</async>
+              <commandlineArgs>
+                ${context.command.start}
+              </commandlineArgs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>post-integration-test</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <commandlineArgs>
+                ${context.command.stop}
+              </commandlineArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <!--- Configure Jacoco for IT tests-->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${maven.jacoco.plugin}</version>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>BUNDLE</element>
+                  <limits>
+                    <limit>
+                      <counter>COMPLEXITY</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>${test.coverage.minimum}</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -414,8 +477,10 @@
         <version>${maven.failsafe.plugin}</version>
         <configuration>
           <!--suppress UnresolvedMavenProperty -->
-          <!-- Property failsafeArgLine is set from failsafe plugin-->
+          <!-- Property surefireArgLine wird vom maven-failsafe-plugin gesetzt-->
           <argLine>${failsafeArgLine}</argLine>
+          <shutdown>kill</shutdown>
+
         </configuration>
         <executions>
           <execution>
@@ -427,6 +492,7 @@
           </execution>
         </executions>
       </plugin>
+
 
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
@@ -529,15 +595,9 @@
             <creationTime>
               USE_CURRENT_TIMESTAMP
             </creationTime>
-            <args>
-              <arg>
-                ${main.arguments}
-              </arg>
-            </args>
-
             <ports>
-              <port>${main.http.port}</port>
-              <port>${main.https.port}</port>
+              <port>${docker.http.port}</port>
+              <port>${docker.https.port}</port>
             </ports>
           </container>
         </configuration>
@@ -552,4 +612,172 @@
     </plugins>
 
   </build>
+  <profiles>
+    <profile>
+      <id>jacoco</id>
+      <activation>
+          <property>
+            <name>test.integration</name>
+          </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.plugin.version}</version>
+            <executions>
+              <!--
+                  Prepares the property pointing to the JaCoCo runtime agent which
+                  is passed as VM argument when Maven the Surefire plugin is executed.
+              -->
+              <execution>
+                <id>pre-unit-test</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the path to the file which contains the execution data. -->
+                  <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                  <!--
+                      Sets the name of the property containing the settings
+                      for JaCoCo runtime agent.
+                  -->
+                  <propertyName>surefireArgLine</propertyName>
+                </configuration>
+              </execution>
+              <!--
+                  Ensures that the code coverage report for unit tests is created after
+                  unit tests have been run.
+              -->
+              <execution>
+                <id>post-unit-test</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the path to the file which contains the execution data. -->
+                  <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                  <!-- Sets the output directory for the code coverage report. -->
+                  <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>pre-integration-test</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>prepare-agent-integration</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the path to the file which contains the execution data. -->
+                  <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                  <!--
+                      Sets the name of the property containing the settings
+                      for JaCoCo runtime agent.
+                  -->
+                  <propertyName>failsafeArgLine</propertyName>
+                </configuration>
+              </execution>
+              <!--
+                  Ensures that the code coverage report for integration tests after
+                  integration tests have been run.
+              -->
+              <execution>
+                <id>post-integration-test-dump</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>dump</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the path to the file which contains the execution data. -->
+                  <destFile>${project.build.directory}/coverage-reports/jacoco-it-application.exec</destFile>
+                </configuration>
+              </execution>
+              <execution>
+                <id>post-integration-test-report</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the path to the file which contains the execution data. -->
+                  <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                  <!-- Sets the output directory for the code coverage report. -->
+                  <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>merge-results</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>merge</goal>
+                </goals>
+                <configuration>
+                  <fileSets>
+                    <fileSet>
+                      <directory>${project.build.directory}/coverage-reports</directory>
+                      <includes>
+                        <include>*.exec</include>
+                      </includes>
+                    </fileSet>
+                  </fileSets>
+                  <destFile>${project.build.directory}/coverage-reports/jacoco-aggregate.exec</destFile>
+                </configuration>
+              </execution>
+              <execution>
+                <id>post-merge-report</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <dataFile>${project.build.directory}/coverage-reports/jacoco-aggregate.exec</dataFile>
+                  <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>     <!-- add tag developer image -->
+      <id>localDockerImage</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <dockerTag>developerImage</dockerTag>
+        <dockerMajorTag>developerImage</dockerMajorTag>
+        <dockerMajorMinorTag>developerImage</dockerMajorMinorTag>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dockerDeveloperTags</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <plugins>
+
+          <!-- When calling maven release:prepare and release:perform execute only install and NOT deploy. Deploy publishes the image
+               which should be bone by build server-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <goals>install</goals>
+              <autoVersionSubmodules>true</autoVersionSubmodules>
+            </configuration>
+          </plugin>
+        </plugins>
+
+      </build>
+    </profile>
+  </profiles>
+
 </project>

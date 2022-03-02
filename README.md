@@ -27,7 +27,7 @@ This template can be used to start your own Jexxa application
 - In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
 - In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
 - In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-- In [jexxa-developer.properties](src/main/resources/jexxa-developer.properties) adjust all TODOs
+- In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
 
 ## Adjust Release Version
@@ -42,7 +42,7 @@ mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 ```shell
 mvn clean install
 
-java -jar "-Dio.jexxa.config.import=/jexxa-developer.properties" ./target/jexxatemplate-jar-with-dependencies.jar
+java -jar "-Dio.jexxa.config.import=/jexxa-test.properties" ./target/jexxatemplate-jar-with-dependencies.jar
 ```
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 
@@ -53,7 +53,7 @@ Jexxa itself addresses this issue by using two different properties files.
 - `jexxa-application.properties`: By default, this is the properties file used in production. Therefore, it does not
   include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
   into your containers in a secure way.
-- `jexxa-developer.properties`: This file can be used by developers to define differences between development and production environment.
+- `jexxa-test.properties`: This file can be used by developers to define differences between development and production environment.
   For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository. Since
   Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
 
