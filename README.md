@@ -1,3 +1,6 @@
+[![Maven Test Build](https://github.com/repplix/JexxaTemplate/actions/workflows/mavenBuild.yml/badge.svg)](https://github.com/repplix/JexxaTemplate/actions/workflows/mavenBuild.yml)
+[![New Release](https://github.com/repplix/JexxaTemplate/actions/workflows/newRelease.yml/badge.svg)](https://github.com/repplix/JexxaTemplate/actions/workflows/newRelease.yml)
+
 # JexxaTemplate
 This template can be used to start your own Jexxa application 
 
@@ -26,6 +29,7 @@ This template can be used to start your own Jexxa application
 - Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
 - In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
 - In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
+- In README.md adjust the badges (first two lines)
 - In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
 - In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
