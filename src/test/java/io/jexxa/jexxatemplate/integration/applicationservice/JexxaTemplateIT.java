@@ -32,12 +32,11 @@ class JexxaTemplateIT
         restPath = "http://localhost:" +
                 applicationProperties.getProperty(JEXXA_REST_PORT);
 
-        //Act
+        //Wait until application was started
         await().atMost(5, TimeUnit.SECONDS)
                 .pollDelay(100, TimeUnit.MILLISECONDS)
                 .ignoreException(UnirestException.class)
                 .until(JexxaTemplateIT::contextIsRunning);
-
 
     }
 
@@ -48,8 +47,7 @@ class JexxaTemplateIT
         //Arrange
         var uriContextName = restPath +"/BoundedContext/contextName";
 
-        System.out.println(uriContextName);
-
+        //Act
         var result = Unirest.get(uriContextName)
                 .header(CONTENT_TYPE, APPLICATION_JSON.getMimeType())
                 .asObject(String.class)
@@ -57,7 +55,6 @@ class JexxaTemplateIT
 
         //Assert
         assertEquals(JexxaTemplate.class.getSimpleName(), result);
-        assert(true);
     }
 
 
