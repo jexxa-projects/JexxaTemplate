@@ -68,7 +68,7 @@
     <junit.platform.launcher.version>1.8.2</junit.platform.launcher.version>
     <junit.jupiter.engine.version>5.8.2</junit.jupiter.engine.version>
     <junit.jupiter.params.version>5.8.2</junit.jupiter.params.version>
-    <awaitility.version>4.1.1</awaitility.version>
+    <awaitility.version>4.2.0</awaitility.version>
     <h2database.version>2.1.210</h2database.version>
     <unirest.java.version>3.13.6</unirest.java.version>
     <jexxa-test.release.version>4.1.2</jexxa-test.release.version>
