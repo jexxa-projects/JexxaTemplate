@@ -56,6 +56,7 @@ class PatternLanguageTest {
                         infrastructure)
                 .orShould().haveFullyQualifiedName(JexxaTemplate.class.getName());
 
+        //Assert
         rule.check(importedClasses);
     }
 
@@ -68,6 +69,7 @@ class PatternLanguageTest {
         var annotationRule = classes().that().resideInAnyPackage("..applicationservice")
                 .should().beAnnotatedWith(ApplicationService.class);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -81,6 +83,7 @@ class PatternLanguageTest {
                 .orShould().beAnnotatedWith(InfrastructureService.class)
                 .orShould().beAnnotatedWith(DomainService.class);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -94,6 +97,7 @@ class PatternLanguageTest {
                 .orShould().beAnnotatedWith(DomainWorkflow.class)
                 .allowEmptyShould(true);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -106,6 +110,7 @@ class PatternLanguageTest {
                 .should().beAnnotatedWith(DomainEvent.class)
                 .allowEmptyShould(true);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -118,6 +123,7 @@ class PatternLanguageTest {
                 .should().beAnnotatedWith(ValueObject.class)
                 .allowEmptyShould(true);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -130,6 +136,7 @@ class PatternLanguageTest {
                 .should().beAnnotatedWith(BusinessException.class)
                 .allowEmptyShould(true);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
@@ -142,6 +149,7 @@ class PatternLanguageTest {
                 .should().beAnnotatedWith(Aggregate.class)
                 .allowEmptyShould(true);
 
+        //Assert
         annotationRule.check(importedClasses);
     }
 
