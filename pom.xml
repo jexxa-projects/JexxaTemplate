@@ -71,7 +71,9 @@
     <awaitility.version>4.2.0</awaitility.version>
     <h2database.version>2.1.210</h2database.version>
     <unirest.java.version>3.13.6</unirest.java.version>
-    <jexxa-test.release.version>4.1.2</jexxa-test.release.version>
+    <jexxa-test.version>4.1.2</jexxa-test.version>
+    <archunit.version>0.23.1</archunit.version>
+
 
     <!-- server-name used in mavens settings.xml to find to your repository credentials -->
     <project.scm.id>github</project.scm.id>
@@ -173,7 +175,7 @@
     <dependency>
       <groupId>io.jexxa.jexxatest</groupId>
       <artifactId>jexxa-test</artifactId>
-      <version>${jexxa-test.release.version}</version>
+      <version>${jexxa-test.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -202,6 +204,13 @@
       <groupId>org.jacoco</groupId>
       <artifactId>org.jacoco.agent</artifactId>
       <version>${maven.jacoco.plugin}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit</artifactId>
+      <version>${archunit.version}</version>
       <scope>test</scope>
     </dependency>
 
