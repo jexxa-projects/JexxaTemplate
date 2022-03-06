@@ -348,7 +348,6 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
           <execution>
-            <!-- <phase>deploy</phase> -->
             <phase>validate</phase>
             <id>parse-version</id>
             <goals>
@@ -359,7 +358,6 @@
             </configuration>
           </execution>
           <execution>
-            <!-- <phase>deploy</phase> -->
             <phase>validate</phase>
 
             <!-- Sets dockerTag to snapshot or latest -->
@@ -376,7 +374,6 @@
             </configuration>
           </execution>
           <execution>
-            <!-- <phase>deploy</phase> -->
             <phase>validate</phase>
 
             <!-- Sets dockerTag to snapshot or latest -->
@@ -393,7 +390,6 @@
             </configuration>
           </execution>
           <execution>
-            <!-- <phase>deploy</phase> -->
             <phase>validate</phase>
 
             <!-- Sets dockerTag to snapshot or latest -->
@@ -513,7 +509,6 @@
           <execution>
             <phase>deploy</phase>
             <goals>
-              <!-- <goal>dockerBuild</goal> -->
               <goal>build</goal>
             </goals>
           </execution>
