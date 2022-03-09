@@ -18,6 +18,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static io.jexxa.jexxatemplate.architecture.PackageName.AGGREGATE;
+import static io.jexxa.jexxatemplate.architecture.PackageName.APPLICATIONSERVICE;
+import static io.jexxa.jexxatemplate.architecture.PackageName.BUSINESS_EXCEPTION;
+import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_EVENT;
+import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_PROCESS_SERVICE;
+import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_SERVICE;
+import static io.jexxa.jexxatemplate.architecture.PackageName.VALUE_OBJECT;
 
 class PatternLanguageTest {
 
@@ -32,41 +39,12 @@ class PatternLanguageTest {
     }
 
     @Test
-    void testPackageStructure() {
-        // Arrange
-        var applicationService = "..applicationservice";
-        var domainProcessService = "..domainprocessservice";
-        var domainService = "..domainservice";
-        var domainAggregate = "..domain.aggregate";
-        var domainBusinessException = "..domain.businessexception";
-        var domainDomainEvent = "..domain.domainevent";
-        var domainValueObject = "..domain.valueobject";
-        var infrastructure = "..infrastructure..";
-
-        // Act
-        var rule = classes().should()
-                .resideInAnyPackage(
-                        applicationService,
-                        domainProcessService,
-                        domainService,
-                        domainAggregate,
-                        domainBusinessException,
-                        domainDomainEvent,
-                        domainValueObject,
-                        infrastructure)
-                .orShould().haveFullyQualifiedName(JexxaTemplate.class.getName());
-
-        //Assert
-        rule.check(importedClasses);
-    }
-
-    @Test
     void testAnnotationApplicationService()
     {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..applicationservice")
+        var annotationRule = classes().that().resideInAnyPackage(APPLICATIONSERVICE)
                 .should().beAnnotatedWith(ApplicationService.class);
 
         //Assert
@@ -78,7 +56,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domainservice")
+        var annotationRule = classes().that().resideInAnyPackage(DOMAIN_SERVICE)
                 .should().beAnnotatedWith(Repository.class)
                 .orShould().beAnnotatedWith(InfrastructureService.class)
                 .orShould().beAnnotatedWith(DomainService.class);
@@ -92,7 +70,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domainprocessservice")
+        var annotationRule = classes().that().resideInAnyPackage(DOMAIN_PROCESS_SERVICE)
                 .should().beAnnotatedWith(DomainProcessStep.class)
                 .orShould().beAnnotatedWith(DomainWorkflow.class)
                 .allowEmptyShould(true);
@@ -106,7 +84,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domain.domainevent")
+        var annotationRule = classes().that().resideInAnyPackage(DOMAIN_EVENT)
                 .should().beAnnotatedWith(DomainEvent.class)
                 .allowEmptyShould(true);
 
@@ -119,7 +97,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domain.valueobject")
+        var annotationRule = classes().that().resideInAnyPackage(VALUE_OBJECT)
                 .should().beAnnotatedWith(ValueObject.class)
                 .allowEmptyShould(true);
 
@@ -132,7 +110,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domain.businessexception")
+        var annotationRule = classes().that().resideInAnyPackage(BUSINESS_EXCEPTION)
                 .should().beAnnotatedWith(BusinessException.class)
                 .allowEmptyShould(true);
 
@@ -145,7 +123,7 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage("..domain.aggregate")
+        var annotationRule = classes().that().resideInAnyPackage(AGGREGATE)
                 .should().beAnnotatedWith(Aggregate.class)
                 .allowEmptyShould(true);
 
