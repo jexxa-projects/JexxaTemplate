@@ -44,7 +44,8 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(APPLICATIONSERVICE)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(APPLICATIONSERVICE)
                 .should().beAnnotatedWith(ApplicationService.class);
 
         //Assert
@@ -70,7 +71,8 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(DOMAIN_PROCESS_SERVICE)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(DOMAIN_PROCESS_SERVICE)
                 .should().beAnnotatedWith(DomainProcessStep.class)
                 .orShould().beAnnotatedWith(DomainWorkflow.class)
                 .allowEmptyShould(true);
@@ -84,7 +86,8 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(DOMAIN_EVENT)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(DOMAIN_EVENT)
                 .should().beAnnotatedWith(DomainEvent.class)
                 .allowEmptyShould(true);
 
@@ -97,7 +100,8 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(VALUE_OBJECT)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(VALUE_OBJECT)
                 .should().beAnnotatedWith(ValueObject.class)
                 .allowEmptyShould(true);
 
@@ -110,7 +114,8 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(BUSINESS_EXCEPTION)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(BUSINESS_EXCEPTION)
                 .should().beAnnotatedWith(BusinessException.class)
                 .allowEmptyShould(true);
 
@@ -123,12 +128,69 @@ class PatternLanguageTest {
         // Arrange
 
         //Act
-        var annotationRule = classes().that().resideInAnyPackage(AGGREGATE)
+        var annotationRule = classes()
+                .that().resideInAnyPackage(AGGREGATE)
                 .should().beAnnotatedWith(Aggregate.class)
                 .allowEmptyShould(true);
 
         //Assert
         annotationRule.check(importedClasses);
+    }
+
+    @Test
+    void testRepositoryMustBeInterfaces() {
+        // Arrange
+
+        //Act
+        var interfaceRule = classes()
+                .that().areAnnotatedWith(Repository.class)
+                .should().beInterfaces()
+                .allowEmptyShould(true);
+
+        //Assert
+        interfaceRule.check(importedClasses);
+    }
+
+    @Test
+    void testInfrastructureServiceMustBeInterfaces() {
+        // Arrange
+
+        //Act
+        var interfaceRule = classes()
+                .that().areAnnotatedWith(InfrastructureService.class)
+                .should().beInterfaces()
+                .allowEmptyShould(true);
+
+        //Assert
+        interfaceRule.check(importedClasses);
+    }
+
+    @Test
+    void testValueObjectMustBeRecords() {
+        // Arrange
+
+        //Act
+        var recordRule = classes()
+                .that().resideInAnyPackage(VALUE_OBJECT)
+                .should().beRecords()
+                .allowEmptyShould(true);
+
+        //Assert
+        recordRule.check(importedClasses);
+    }
+
+    @Test
+    void testDomainEventMustBeRecord() {
+        // Arrange
+
+        //Act
+        var recordRule = classes()
+                .that().resideInAnyPackage(DOMAIN_EVENT)
+                .should().beRecords()
+                .allowEmptyShould(true);
+
+        //Assert
+        recordRule.check(importedClasses);
     }
 
 }
