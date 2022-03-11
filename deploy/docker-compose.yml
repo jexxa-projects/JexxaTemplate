@@ -53,6 +53,7 @@ services:
   Postgres:
     image: postgres:14.0-alpine
     #restart: always
+    user: postgres
     secrets:
       - jdbcUser
       - jdbcPassword
