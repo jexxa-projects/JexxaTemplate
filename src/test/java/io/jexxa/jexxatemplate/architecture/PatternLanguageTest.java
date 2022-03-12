@@ -102,6 +102,7 @@ class PatternLanguageTest {
         //Act
         var annotationRule = classes()
                 .that().resideInAnyPackage(VALUE_OBJECT)
+                .and().areNotNestedClasses() //For example for Builder pattern
                 .should().beAnnotatedWith(ValueObject.class)
                 .allowEmptyShould(true);
 
@@ -130,7 +131,10 @@ class PatternLanguageTest {
         //Act
         var annotationRule = classes()
                 .that().resideInAnyPackage(AGGREGATE)
+                .and().areNotAnonymousClasses()
+                .and().areNotInnerClasses()
                 .should().beAnnotatedWith(Aggregate.class)
+                .orShould().beAnnotatedWith(FunctionalInterface.class)
                 .allowEmptyShould(true);
 
         //Assert
@@ -172,6 +176,7 @@ class PatternLanguageTest {
         //Act
         var recordRule = classes()
                 .that().resideInAnyPackage(VALUE_OBJECT)
+                .and().areNotNestedClasses()
                 .should().beRecords()
                 .allowEmptyShould(true);
 
