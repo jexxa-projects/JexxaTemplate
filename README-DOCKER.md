@@ -12,21 +12,21 @@ So, if you want to create and docker image just go to GitHub actions and start a
 
 ### GitHub Actions
 
-- [mavenBuild.yml](.github/workflows/mavenBuild.yml):
-    - Builds the project after each push
-    - Can be started manually from GitHub web page if required
+*   [mavenBuild.yml](.github/workflows/mavenBuild.yml):
+    *   Builds the project after each push
+    *   Can be started manually from GitHub web page if required
 
-- [newRelease.yml](.github/workflows/newRelease.yml):
-    - Manually create a new release using maven via GitHub web page
-    - Can only be run via GitHub web page
+*   [newRelease.yml](.github/workflows/newRelease.yml):
+    *   Manually create a new release using maven via GitHub web page
+    *   Can only be run via GitHub web page
 
 ### Docker-Stacks
 
-- [developerStack.yml](deploy/developerStack.yml)
-    - Includes all required dependencies to run the application during development on your local machine
+*   [developerStack.yml](deploy/developerStack.yml)
+    *   Includes all required dependencies to run the application during development on your local machine
 
-- [docker-compose.yml](deploy/docker-compose.yml)
-    - Stack to run the application as stack in your production environment
++   [docker-compose.yml](deploy/docker-compose.yml)
+    *   Stack to run the application as stack in your production environment
 
 
 ### Configure Secrets
