@@ -27,7 +27,7 @@ So, if you want to create and docker image just go to GitHub actions and start a
 *   [developerStack.yml](deploy/developerStack.yml)
     *   Includes all required dependencies to run the application during development on your local machine
 
-+   [docker-compose.yml](deploy/docker-compose.yml)
+*   [docker-compose.yml](deploy/docker-compose.yml)
     *   Stack to run the application as stack in your production environment
 
 

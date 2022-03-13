@@ -37,7 +37,6 @@ This template can be used to start your own Jexxa application
     *   In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
     *   In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
-
 ## Adjust Release Version
 
 ```shell
@@ -55,7 +54,7 @@ java -jar "-Dio.jexxa.config.import=/jexxa-test.properties" ./target/jexxatempla
 ```
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 
-### Maven (without integration tests):
+### Maven (without integration tests)
 
 To build the template with integration tests you need to run a postgres database and JMS message broker.
 If this is available locally, you can enter the following command to build the application including integration tests: 
