@@ -47,6 +47,7 @@ mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 ## Build and run the Project
 
 ### Maven (without integration tests):
+
 ```shell
 mvn clean install
 
@@ -55,7 +56,8 @@ java -jar "-Dio.jexxa.config.import=/jexxa-test.properties" ./target/jexxatempla
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 
 ### Maven (without integration tests):
-To build the template with integration tests you need to run a postgres database and JMS message broker. 
+
+To build the template with integration tests you need to run a postgres database and JMS message broker.
 If this is available locally, you can enter the following command to build the application including integration tests: 
 
 ```shell
