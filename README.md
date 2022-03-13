@@ -10,28 +10,28 @@ This template can be used to start your own Jexxa application
 *   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment  
 
 ## Create Project
--   In GitHub pres `Use this template` 
+*   In GitHub pres `Use this template` 
 
--   Enter a `project name` for the repository. This template uses following convention
-  -   Project name of the repository should be equal to the name of the java application defined in maven 
-  -   Name of the application should be equal the name of java class providing the main method 
-  -   Project name should be written in camel case notation, such as `JexxaTemplate`
+*   Enter a `project name` for the repository. This template uses following convention
+*   Project name of the repository should be equal to the name of the java application defined in maven 
+  *   Name of the application should be equal the name of java class providing the main method 
+  *   Project name should be written in camel case notation, such as `JexxaTemplate`
 
--   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
+*   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
 
 ## Adjust Project 
--  Checkout the new project in your favorite IDE 
+*  Checkout the new project in your favorite IDE 
 
--  Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
-  -  Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
+*  Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
 
-  -  Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
-  -  Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
-  -  In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
-  -  In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
-  -  In README.md adjust the badges (first two lines)
-  -  In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-  -  In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
+*  Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
+  *  Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
+  *  Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
+  *  In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
+  *  In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
+  *  In README.md adjust the badges (first two lines)
+  *  In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
+  *  In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
 
 ## Adjust Release Version
@@ -62,14 +62,15 @@ mvn clean install -PintegrationTests
 
 Passwords and credentials are a crucial part of any production environment which must not be stored in a repository.
 Jexxa itself addresses this issue by using two different properties files.
--  `jexxa-application.properties`: By default, this is the properties file used in production. Therefore, it does not
+*  `jexxa-application.properties`: By default, this is the properties file used in production. Therefore, it does not
   include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
   into your containers in a secure way.
--  `jexxa-test.properties`: 
-  -  This file can be used by developers to define differences between development and production environment.
+
+*  `jexxa-test.properties`:
+  *  This file can be used by developers to define differences between development and production environment.
     For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository. 
-  -  Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-  -  This properties-file is automatically loaded if you use `Jexxa-Test` for your tests. 
+  *  Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
+  *  This properties-file is automatically loaded if you use `Jexxa-Test` for your tests.
 
 ### Run the entire environment 
 To see how to Run the entire application environment in a docker-swarm environment follow the [README-DOCKER.md](README-DOCKER.md).
