@@ -24,18 +24,18 @@ This template can be used to start your own Jexxa application
 
 ## Adjust Project
 
-*  Checkout the new project in your favorite IDE 
+*   Checkout the new project in your favorite IDE
 
-*  Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
+*   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
 
-*  Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
-   *  Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
-   *  Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
-   *  In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
-   *  In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
-   *  In README.md adjust the badges (first two lines)
-   *  In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-   *  In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
+*   Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
+    *   Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
+    *   Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
+    *   In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
+    *   In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
+    *   In README.md adjust the badges (first two lines)
+    *   In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
+    *   In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
 
 ## Adjust Release Version
