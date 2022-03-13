@@ -5,21 +5,25 @@
 This template can be used to start your own Jexxa application 
 
 ## Requirements
+
 *   Java17 installed
 *   Writing Java code and build your programs using maven
 *   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment  
 
 ## Create Project
+
 *   In GitHub pres `Use this template` 
 
 *   Enter a `project name` for the repository. This template uses following convention
+
 *   Project name of the repository should be equal to the name of the java application defined in maven 
   *   Name of the application should be equal the name of java class providing the main method 
   *   Project name should be written in camel case notation, such as `JexxaTemplate`
 
 *   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
 
-## Adjust Project 
+## Adjust Project
+
 *  Checkout the new project in your favorite IDE 
 
 *  Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
@@ -62,6 +66,7 @@ mvn clean install -PintegrationTests
 
 Passwords and credentials are a crucial part of any production environment which must not be stored in a repository.
 Jexxa itself addresses this issue by using two different properties files.
+
 *  `jexxa-application.properties`: By default, this is the properties file used in production. Therefore, it does not
   include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
   into your containers in a secure way.
@@ -73,4 +78,5 @@ Jexxa itself addresses this issue by using two different properties files.
   *  This properties-file is automatically loaded if you use `Jexxa-Test` for your tests.
 
 ### Run the entire environment 
+
 To see how to Run the entire application environment in a docker-swarm environment follow the [README-DOCKER.md](README-DOCKER.md).
