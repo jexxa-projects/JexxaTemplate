@@ -1,10 +1,12 @@
-# Docker Image 
+# Docker Image
+
 This README provides a guideline how to build a new docker image with this template. The resulting image 
 can either be used with kubernetes or docker. 
 
 In the following we assume a docker-swarm setup which is a typical starting point for clustering your container. 
 
 ## Create new release and docker image
+
 Within this template we use the maven-jib plugin to create and upload a new image. To simplify this process 
 and to combine it with some other great features of GitHubs CI/CD possibilities the image should be build on GitHub. 
 
