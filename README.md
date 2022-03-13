@@ -45,7 +45,7 @@ mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 
 ## Build and run the Project
 
-### Maven (without integration tests):
+### Maven (without integration tests)
 
 ```shell
 mvn clean install

@@ -30,7 +30,6 @@ So, if you want to create and docker image just go to GitHub actions and start a
 *   [docker-compose.yml](deploy/docker-compose.yml)
     *   Stack to run the application as stack in your production environment
 
-
 ### Configure Secrets
 
 In order to use docker-compose.yml you have to configure following secrets.
