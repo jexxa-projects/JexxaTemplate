@@ -17,8 +17,8 @@ This template can be used to start your own Jexxa application
 *   Enter a `project name` for the repository. This template uses following convention
 
 *   Project name of the repository should be equal to the name of the java application defined in maven 
-  *   Name of the application should be equal the name of java class providing the main method 
-  *   Project name should be written in camel case notation, such as `JexxaTemplate`
+    *   Name of the application should be equal the name of java class providing the main method
+    *   Project name should be written in camel case notation, such as `JexxaTemplate`
 
 *   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
 
@@ -29,13 +29,13 @@ This template can be used to start your own Jexxa application
 *  Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
 
 *  Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
-  *  Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
-  *  Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
-  *  In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
-  *  In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
-  *  In README.md adjust the badges (first two lines)
-  *  In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-  *  In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
+   *  Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
+   *  Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
+   *  In README.md search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
+   *  In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
+   *  In README.md adjust the badges (first two lines)
+   *  In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
+   *  In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
 
 
 ## Adjust Release Version
@@ -72,10 +72,9 @@ Jexxa itself addresses this issue by using two different properties files.
   into your containers in a secure way.
 
 *  `jexxa-test.properties`:
-  *  This file can be used by developers to define differences between development and production environment.
-    For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository. 
-  *  Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-  *  This properties-file is automatically loaded if you use `Jexxa-Test` for your tests.
+   *  This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
+   *  Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
+   *  This properties-file is automatically loaded if you use `Jexxa-Test` for your tests.
 
 ### Run the entire environment 
 
