@@ -41,4 +41,4 @@ jobs:
         with:
           java-version: 17
       - name: Build with Maven
-        run: mvn -B package -PintegrationTests --file pom.xml
+        run: mvn -B install --file pom.xml

@@ -559,7 +559,7 @@
     <profile>
       <id>integrationTests</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <build>
         <plugins>
