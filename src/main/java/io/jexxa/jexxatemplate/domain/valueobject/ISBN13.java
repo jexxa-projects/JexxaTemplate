@@ -1,6 +1,7 @@
 package io.jexxa.jexxatemplate.domain.valueobject;
 
 import io.jexxa.addend.applicationcore.ValueObject;
+import io.jexxa.addend.applicationcore.ValueObjectFactory;
 
 import java.util.Objects;
 
@@ -13,6 +14,12 @@ public record ISBN13(String value)
     public ISBN13 {
         Objects.requireNonNull(value);
         validateChecksum(value);
+    }
+
+    @ValueObjectFactory(ISBN13.class)
+    public static ISBN13 createISBN(String value)
+    {
+        return new ISBN13(value);
     }
 
     private void validateChecksum(String isbn13)
