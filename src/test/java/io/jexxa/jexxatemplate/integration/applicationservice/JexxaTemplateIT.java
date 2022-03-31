@@ -36,8 +36,8 @@ class JexxaTemplateIT
         restPath = "http://localhost:" +
                 applicationProperties.getProperty(JEXXA_REST_PORT);
 
-        //Wait until application was started
-        await().atMost(5, TimeUnit.SECONDS)
+        //Wait until application was started (using 10 seconds should be sufficient to start large applications)
+        await().atMost(10, TimeUnit.SECONDS)
                 .pollDelay(100, TimeUnit.MILLISECONDS)
                 .ignoreException(UnirestException.class)
                 .until(JexxaTemplateIT::contextIsRunning);
