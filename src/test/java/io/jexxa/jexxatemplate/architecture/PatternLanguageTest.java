@@ -3,16 +3,7 @@ package io.jexxa.jexxatemplate.architecture;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
-import io.jexxa.addend.applicationcore.Aggregate;
-import io.jexxa.addend.applicationcore.ApplicationService;
-import io.jexxa.addend.applicationcore.BusinessException;
-import io.jexxa.addend.applicationcore.DomainEvent;
-import io.jexxa.addend.applicationcore.DomainProcessStep;
-import io.jexxa.addend.applicationcore.DomainService;
-import io.jexxa.addend.applicationcore.DomainWorkflow;
-import io.jexxa.addend.applicationcore.InfrastructureService;
-import io.jexxa.addend.applicationcore.Repository;
-import io.jexxa.addend.applicationcore.ValueObject;
+import io.jexxa.addend.applicationcore.*;
 import io.jexxa.jexxatemplate.JexxaTemplate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -102,8 +93,8 @@ class PatternLanguageTest {
         //Act
         var annotationRule = classes()
                 .that().resideInAnyPackage(VALUE_OBJECT)
-                .and().areNotNestedClasses() //For example for Builder pattern
                 .should().beAnnotatedWith(ValueObject.class)
+                .orShould().beAnnotatedWith(ValueObjectFactory.class)
                 .allowEmptyShould(true);
 
         //Assert
@@ -176,7 +167,7 @@ class PatternLanguageTest {
         //Act
         var recordRule = classes()
                 .that().resideInAnyPackage(VALUE_OBJECT)
-                .and().areNotNestedClasses()
+                .and().areNotAnnotatedWith(ValueObjectFactory.class)
                 .should().beRecords()
                 .allowEmptyShould(true);
 
