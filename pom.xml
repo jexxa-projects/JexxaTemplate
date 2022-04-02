@@ -32,9 +32,9 @@
   <!-- TODO (REQUIRED): Change the scm section to include correct repository.       -->
   <!-- **************************************************************************** -->
   <scm>
-    <connection>scm:git:https://github.com/repplix/JexxaTemplate.git</connection>
-    <url>https://github.com/repplix/JexxaTemplate</url>
-    <developerConnection>scm:git:https://github.com/repplix/JexxaTemplate.git</developerConnection>
+    <connection>scm:git:https://github.com/jexxa-projects/JexxaTemplate.git</connection>
+    <url>https://github.com/jexxa-projects/JexxaTemplate</url>
+    <developerConnection>scm:git:https://github.com/jexxa-projects/JexxaTemplate.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
@@ -42,7 +42,7 @@
     <!-- **************************************************************************** -->
     <!-- TODO (REQUIRED): Change the repository to upload your image.                 -->
     <!-- **************************************************************************** -->
-    <image.repository.root>ghcr.io/repplix</image.repository.root>
+    <image.repository.root>ghcr.io/jexxa-projects</image.repository.root>
     <test.coverage.minimum>0.00</test.coverage.minimum>     <!-- Minimum Test coverage in %-->
 
     <!-- ************************************************************* -->
