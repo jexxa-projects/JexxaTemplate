@@ -12,7 +12,7 @@ This template can be used to start your own Jexxa application
 
 ## Create Project
 
-*   In GitHub pres `Use this template` 
+*   In GitHub press `Use this template` 
 
 *   Enter a `project name` for the repository. This template uses following convention
 
