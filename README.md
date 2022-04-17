@@ -8,8 +8,18 @@ This template can be used to start your own Jexxa application
 
 *   Java17 installed
 *   Writing Java code and build your programs using maven
-*   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment  
+*   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment. See [here](README-DOCKER.md) for more information.   
 
+## Features
+
+*   Simple maven project to start your first project with Jexxa, build it as self-contained jar and/or as docker image.
+*   Predefined package structure for a ports-and-adapter architecture in the context of domain driven design.
+*   A template for integration tests to run your tests against the running application. [This template can be used for your own tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java).  
+*   Predefined architectural tests that can be used without any further extensions: 
+    * [PatternLanguageTest](src/test/java/io/jexxa/jexxatemplate/architecture/PatternLanguageTest.java) validates the correct annotation of your application using project [Addend](http://addend.jexxa.io/). 
+    * [OnionArchitectureTest](src/test/java/io/jexxa/jexxatemplate/architecture/OnionArchitectureTest.java) validates dependencies between packages of your application.
+*   Predefined CI/CD scripts for GitHub including automatic dependency updates. 
+ 
 ## Create Project
 
 *   In GitHub press `Use this template` 
