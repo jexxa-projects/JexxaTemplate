@@ -61,7 +61,7 @@
     <jexxa-web.release.version>4.1.4</jexxa-web.release.version>
     <addend.version>1.2.0</addend.version>
     <activemq.client.version>5.17.0</activemq.client.version>
-    <postgres.version>42.3.3</postgres.version>
+    <postgres.version>42.3.4</postgres.version>
     <slf4j.simple.version>1.7.36</slf4j.simple.version>
 
     <!-- version of test dependencies -->
