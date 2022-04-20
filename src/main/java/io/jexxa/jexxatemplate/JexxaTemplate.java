@@ -22,14 +22,13 @@ public final class JexxaTemplate
                 //Get the latest books when starting the application
                 .bootstrap(ReferenceLibrary.class).with(ReferenceLibrary::addLatestBooks)
 
+                //bind all application services and the bounded context to driving adapters
                 .bind(RESTfulRPCAdapter.class).to(BookStoreService.class)
-
                 .bind(RESTfulRPCAdapter.class).to(jexxaMain.getBoundedContext())
 
+                //control the application itself
                 .start()
-
                 .waitForShutdown()
-
                 .stop();
     }
 
