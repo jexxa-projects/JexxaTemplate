@@ -1,8 +1,8 @@
 package io.jexxa.jexxatemplate.domainservice;
 
+import io.jexxa.addend.applicationcore.DomainService;
 import io.jexxa.jexxatemplate.domain.aggregate.Book;
 import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
-import io.jexxa.addend.applicationcore.DomainService;
 
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -16,8 +16,7 @@ public class ReferenceLibrary
 
     public ReferenceLibrary(IBookRepository bookRepository)
     {
-        Objects.requireNonNull(bookRepository);
-        this.bookRepository = bookRepository;
+        this.bookRepository = Objects.requireNonNull(bookRepository);
     }
 
     public void addLatestBooks()

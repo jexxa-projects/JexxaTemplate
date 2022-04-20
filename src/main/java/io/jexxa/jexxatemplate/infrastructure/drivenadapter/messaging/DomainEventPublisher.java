@@ -3,10 +3,11 @@ package io.jexxa.jexxatemplate.infrastructure.drivenadapter.messaging;
 import io.jexxa.jexxatemplate.domainservice.IDomainEventPublisher;
 import io.jexxa.addend.infrastructure.DrivenAdapter;
 import io.jexxa.infrastructure.drivenadapterstrategy.messaging.MessageSender;
-import io.jexxa.infrastructure.drivenadapterstrategy.messaging.MessageSenderManager;
 
 import java.util.Objects;
 import java.util.Properties;
+
+import static io.jexxa.infrastructure.drivenadapterstrategy.messaging.MessageSenderManager.getMessageSender;
 
 @SuppressWarnings("unused")
 @DrivenAdapter
@@ -16,7 +17,7 @@ public class DomainEventPublisher implements IDomainEventPublisher
 
     public DomainEventPublisher(Properties properties)
     {
-        messageSender = MessageSenderManager.getMessageSender(properties);
+        messageSender = getMessageSender(properties);
     }
 
     @Override

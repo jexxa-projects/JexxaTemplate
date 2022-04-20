@@ -20,11 +20,8 @@ public class BookStoreService
 
     public BookStoreService(IBookRepository ibookRepository, IDomainEventPublisher domainEventPublisher)
     {
-        Objects.requireNonNull(ibookRepository);
-        Objects.requireNonNull(domainEventPublisher);
-
-        this.ibookRepository = ibookRepository;
-        this.domainEventPublisher = domainEventPublisher;
+        this.ibookRepository = Objects.requireNonNull(ibookRepository);
+        this.domainEventPublisher = Objects.requireNonNull(domainEventPublisher);
     }
 
     public void addToStock(String isbn13, int amount)
