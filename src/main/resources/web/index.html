@@ -6,26 +6,26 @@
 </head>
 
 <body>
-<h1 id = "greetings">Greetings: </h1>
+<h1 id = "contextName">Context Name: </h1>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
-    const BASE_URL = window.location.protocol + '//' + location.host +'/HelloJexxa';
+    const BASE_URL = window.location.protocol + '//' + location.host +'/BoundedContext';
 
     const appendToDOM = (message) => {
         document
-            .querySelector("#greetings")
+            .querySelector("#contextName")
             .append(message);
     };
 
     const fetchGreetings = () => {
-        axios.get(`${BASE_URL}/greetings`)
+        axios.get(`${BASE_URL}/contextName`)
             .then(response => {
-                const greetings = response.data;
-                console.log(`GET greetings`, greetings);
+                const contextName = response.data;
+                console.log(`GET contextName`, contextName);
                 // append to DOM
-                appendToDOM(greetings);
+                appendToDOM(contextName);
             })
             .catch(error => console.error(error));
     };
