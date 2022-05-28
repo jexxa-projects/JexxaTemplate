@@ -10,6 +10,8 @@ import io.jexxa.addend.applicationcore.ApplicationService;
 import java.util.List;
 import java.util.Objects;
 
+import static io.jexxa.jexxatemplate.domain.valueobject.ISBN13.createISBN;
+
 @SuppressWarnings("unused")
 @ApplicationService
 public class BookStoreService
@@ -26,7 +28,7 @@ public class BookStoreService
 
     public void addToStock(String isbn13, int amount)
     {
-        var validatedISBN = new ISBN13(isbn13);
+        var validatedISBN = createISBN(isbn13);
 
         var result = ibookRepository.search( validatedISBN );
         if ( result.isEmpty() )

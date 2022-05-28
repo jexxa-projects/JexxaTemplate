@@ -4,15 +4,11 @@ import io.jexxa.core.JexxaMain;
 import io.jexxa.infrastructure.drivingadapter.rest.RESTfulRPCAdapter;
 import io.jexxa.jexxatemplate.applicationservice.BookStoreService;
 import io.jexxa.jexxatemplate.domainservice.ReferenceLibrary;
-import io.jexxa.jexxatemplate.infrastructure.support.JsonRecordConverter;
 
 public final class JexxaTemplate
 {
     public static void main(String[] args)
     {
-        //Set a JsonConverter that support java records
-        JsonRecordConverter.registerRecordFactory();
-
         var jexxaMain = new JexxaMain(JexxaTemplate.class);
 
         jexxaMain

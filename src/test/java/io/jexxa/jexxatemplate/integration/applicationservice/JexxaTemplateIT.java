@@ -1,7 +1,6 @@
 package io.jexxa.jexxatemplate.integration.applicationservice;
 
 import io.jexxa.jexxatemplate.JexxaTemplate;
-import io.jexxa.jexxatemplate.infrastructure.support.JsonRecordConverter;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;
 import org.junit.jupiter.api.AfterAll;
@@ -26,9 +25,6 @@ class JexxaTemplateIT
     @BeforeAll
     static void initBeforeAll() throws IOException
     {
-        //Set a JsonConverter that support java records
-        JsonRecordConverter.registerRecordFactory();
-
         Properties applicationProperties = new Properties();
         applicationProperties.load(JexxaTemplate.class.getResourceAsStream("/jexxa-application.properties"));
         applicationProperties.load(JexxaTemplate.class.getResourceAsStream("/jexxa-test.properties"));

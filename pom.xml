@@ -58,7 +58,7 @@
     <maven.compiler.release>17</maven.compiler.release>
 
     <!-- version of dependencies -->
-    <jexxa-web.release.version>4.1.7</jexxa-web.release.version>
+    <jexxa-web.release.version>5.0.0-SNAPSHOT</jexxa-web.release.version>
     <addend.version>1.2.0</addend.version>
     <activemq.client.version>5.17.1</activemq.client.version>
     <postgres.version>42.3.6</postgres.version>
@@ -71,7 +71,7 @@
     <awaitility.version>4.2.0</awaitility.version>
     <h2database.version>2.1.212</h2database.version>
     <unirest.java.version>3.13.10</unirest.java.version>
-    <jexxa-test.version>4.1.7</jexxa-test.version>
+    <jexxa-test.version>5.0.0-SNAPSHOT</jexxa-test.version>
     <archunit.version>0.23.1</archunit.version>
 
 

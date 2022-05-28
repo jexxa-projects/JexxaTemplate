@@ -22,7 +22,7 @@ public record ISBN13(String value)
         return new ISBN13(value);
     }
 
-    private void validateChecksum(String isbn13)
+    private static void validateChecksum(String isbn13)
     {
         var digits = isbn13
                 .replace("-","")
