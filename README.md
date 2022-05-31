@@ -8,7 +8,7 @@ This template can be used to start your own Jexxa application
 
 *   Java17 installed
 *   Writing Java code and build your programs using maven
-*   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment. See [here](README-DOCKER.md) for more information.   
+*   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment. See [here](README-CICD.md) for more information.   
 
 ## Features
 
@@ -93,4 +93,4 @@ Jexxa itself addresses this issue by using two different properties files.
 
 ### Run the entire environment 
 
-To see how to Run the entire application environment in a docker-swarm environment follow the [README-DOCKER.md](README-DOCKER.md).
+To see how to Run the entire application environment in a docker-swarm environment follow the [README-DOCKER.md](README-CICD.md).

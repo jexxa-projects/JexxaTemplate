@@ -1,7 +1,7 @@
-# Docker Image
+# CI/CD process 
 
-This README provides a guideline how to build a new docker image with this template. The resulting image 
-can either be used with kubernetes or docker. 
+This README provides a guideline how to build a CI/CD pipeline using GitHub actions. 
+As a result a new docker image is created that can be used with kubernetes or docker. 
 
 In the following we assume a docker-swarm setup which is a typical starting point for clustering your container. 
 
@@ -22,6 +22,13 @@ So, if you want to create and docker image just go to GitHub actions and start a
     *   Manually create a new release using maven via GitHub web page
     *   Can only be run via GitHub web page
 
+*   [autoMerge.yml](.github/workflows/autoMerge.yml):
+    *   Automatic merge of dependency updates with new patch or minor versions of dependencies. 
+    *   See https://github.com/ridedott/merge-me-action
+
+*   [dependabot.yml](.github/dependabot.yml):
+    *   Check of new dependencies
+  
 ### Docker-Stacks
 
 *   [developerStack.yml](deploy/developerStack.yml)
