@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +27,7 @@ class JexxaTemplateIT
     {
         Properties applicationProperties = new Properties();
         applicationProperties.load(JexxaTemplate.class.getResourceAsStream("/jexxa-application.properties"));
-        applicationProperties.load(JexxaTemplate.class.getResourceAsStream("/jexxa-test.properties"));
+        applicationProperties.load(new FileInputStream("./src/test/resources/jexxa-test.properties"));
 
         restPath = "http://localhost:" +
                 applicationProperties.getProperty(JEXXA_REST_PORT);

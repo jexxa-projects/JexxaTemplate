@@ -49,7 +49,7 @@ This template can be used to start your own Jexxa application
     *   In README.md search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
     *   In README.md adjust the badges (first two lines)
     *   In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-    *   In [jexxa-test.properties](src/main/resources/jexxa-test.properties) adjust all TODOs
+    *   In [jexxa-test.properties](src/test/resources/jexxa-test.properties) adjust all TODOs
 
 ## Adjust Release Version
 
@@ -59,12 +59,11 @@ mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 
 ## Build and run the Project
 
-### Maven (without integration tests)
+### Maven (with integration tests)
 
 ```shell
 mvn clean install
-
-java -jar "-Dio.jexxa.config.import=/jexxa-test.properties" ./target/jexxatemplate-jar-with-dependencies.jar
+java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
 ```
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 

@@ -105,7 +105,7 @@
 
     <context.command.start>
           -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${maven.jacoco.plugin}/org.jacoco.agent-${maven.jacoco.plugin}-runtime.jar=destfile=jacoco-it-app.exec,port=6300,output=tcpserver
-          -jar -Dio.jexxa.config.import=/jexxa-test.properties ${project.build.directory}/${project.artifactId}-jar-with-dependencies.jar
+          -jar -Dio.jexxa.config.import=./src/test/resources/jexxa-test.properties ${project.build.directory}/${project.artifactId}-jar-with-dependencies.jar
      </context.command.start>
    <context.command.stop>
      -version
