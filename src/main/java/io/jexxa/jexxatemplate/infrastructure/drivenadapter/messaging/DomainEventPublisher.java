@@ -17,7 +17,7 @@ public class DomainEventPublisher implements IDomainEventPublisher
 
     public DomainEventPublisher(Properties properties)
     {
-        messageSender = getMessageSender(properties);
+        messageSender = getMessageSender(IDomainEventPublisher.class, properties);
     }
 
     @Override

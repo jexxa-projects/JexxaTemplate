@@ -12,9 +12,6 @@ public final class JexxaTemplate
         var jexxaMain = new JexxaMain(JexxaTemplate.class);
 
         jexxaMain
-                //Define the default packages for inbound and outbound ports
-                .addDDDPackages(JexxaTemplate.class)
-
                 //Get the latest books when starting the application
                 .bootstrap(ReferenceLibrary.class).with(ReferenceLibrary::addLatestBooks)
 
@@ -22,10 +19,8 @@ public final class JexxaTemplate
                 .bind(RESTfulRPCAdapter.class).to(BookStoreService.class)
                 .bind(RESTfulRPCAdapter.class).to(jexxaMain.getBoundedContext())
 
-                //control the application itself
-                .start()
-                .waitForShutdown()
-                .stop();
+                //run the application
+                .run();
     }
 
     private JexxaTemplate()
