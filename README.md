@@ -88,7 +88,11 @@ Jexxa itself addresses this issue by using two different properties files.
 *   `jexxa-test.properties`:
     *   This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
     *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-    *   This properties-file is automatically loaded if you use `Jexxa-Test` for your tests.
+    *   This properties-file is automatically loaded if you use `JexxaTest` for your tests.
+
+*   `jexxa-local.properties`:
+    *   This file can be used in case you would not like to use any infrastructure service such as a DB. 
+    *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
 
 ### Run the entire environment 
 
