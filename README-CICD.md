@@ -40,7 +40,8 @@ So, if you want to create and docker image just go to GitHub actions and start a
 ### Configure Secrets
 
 In order to use docker-compose.yml you have to configure following secrets.
-Please note that the `echo` command states the content of the secret
+Please note that the `echo` command states the content of the secret. Please note, that the
+echo statement shows default passwords that must not be used in production. 
 
 ```shell
 echo 'admin' | docker secret create jdbcUser -
