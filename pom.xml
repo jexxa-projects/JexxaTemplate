@@ -10,7 +10,7 @@
   <name>JexxaTemplate</name>
   <groupId>io.jexxa.jexxatemplate</groupId>
   <artifactId>jexxatemplate</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.0.7</version>
 
   <url>https://www.jexxa.io</url>
 
@@ -35,7 +35,7 @@
     <connection>scm:git:https://github.com/jexxa-projects/JexxaTemplate.git</connection>
     <url>https://github.com/jexxa-projects/JexxaTemplate</url>
     <developerConnection>scm:git:https://github.com/jexxa-projects/JexxaTemplate.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>jexxatemplate-1.0.7</tag>
   </scm>
 
   <properties>
