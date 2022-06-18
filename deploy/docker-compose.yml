@@ -46,9 +46,9 @@ services:
     secrets:
       - jndiUser
       - jndiPassword
-    ports:
-      - "62616:61616" # TODO: Adjust Port"<free Port>:61616"
-      - "8261:8161" # TODO: Adjust Port"<free Port>:8161"
+    #ports:
+    #  - "62616:61616" # TODO: Adjust Port"<free Port>:61616"
+    #  - "8261:8161" # TODO: Adjust Port"<free Port>:8161"
 
   Postgres:
     image: postgres:14.0-alpine
@@ -59,8 +59,8 @@ services:
       - jdbcPassword
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    ports:
-      - "5433:5432" # TODO: Adjust Port "<free Port>:5432"
+    #ports:
+    #  - "5433:5432" # TODO: Adjust Port "<free Port>:5432"
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/jdbcPassword
       POSTGRES_USER_FILE: /run/secrets/jdbcUser
