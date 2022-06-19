@@ -12,9 +12,11 @@ This template can be used to start your own Jexxa application
 
 ## Features
 
-*   Simple maven project to start your first project with Jexxa, build it as self-contained jar and/or as docker image.
+*   Simple maven project to start your first Jexxa-project, build it as self-contained jar and/or docker image.
 
 *   Predefined package structure for a ports-and-adapter architecture in the context of domain driven design.
+
+*   A template for unit tests to validate your domain logic. [This template can be used for your own tests](src/test/java/io/jexxa/jexxatemplate/applicationservice/BookStoreServiceTest.java).
 
 *   A template for integration tests to run your tests against the running application. [This template can be used for your own tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java).
 
@@ -60,9 +62,12 @@ mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 ## Build and run the Project
 
 ### Maven (with integration tests)
+To build the template with integration tests you need to run a postgres database and JMS message broker.
+If you have docker running, you can use the [developer-stack.yml](deploy/developerStack.yml) to set up these infrastructure services. Then, you can enter the following command to build the project with integration tests und run the application:
 
 ```shell
 mvn clean install
+
 java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
 ```
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
@@ -70,10 +75,12 @@ Note: If you search / replaced this file, you should see now `./target/<projectn
 ### Maven (without integration tests)
 
 To build the template with integration tests you need to run a postgres database and JMS message broker.
-If this is available locally, you can enter the following command to build the application including integration tests: 
+If this is not available locally, you can enter the following command to build and run the application: 
 
 ```shell
 mvn clean install -PintegrationTests
+
+java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  target/jexxatemplate-jar-with-dependencies.jar
 ```
 
 ### Properties files
@@ -81,16 +88,16 @@ mvn clean install -PintegrationTests
 Passwords and credentials are a crucial part of any production environment which must not be stored in a repository.
 Jexxa itself addresses this issue by using two different properties files.
 
-*   `jexxa-application.properties`: By default, this is the properties file used in production. Therefore, it does not
+* [`jexxa-application.properties`](src/main/resources/jexxa-application.properties): By default, this is the properties file used in production. Therefore, it does not
   include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
   into your containers in a secure way.
 
-*   `jexxa-test.properties`:
-    *   This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
-    *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-    *   This properties-file is automatically loaded if you use `JexxaTest` for your tests.
+* [`jexxa-test.properties`](src/test/resources/jexxa-test.properties):
+    * This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
+    * Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
+    * This properties-file is automatically loaded if you use `JexxaTest` for your tests.
 
-*   `jexxa-local.properties`:
+* [`jexxa-local.properties`](src/test/resources/jexxa-local.properties):
     *   This file can be used in case you would not like to use any infrastructure service such as a DB. 
     *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
 
