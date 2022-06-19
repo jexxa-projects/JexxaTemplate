@@ -5,7 +5,7 @@ services:
   ### Anwendung ###
 
   JexxaTemplate: # TODO: Change <ProjectName> (CamelCase)
-    image: ghcr.io/jexxa-projects/jexxatemplate:latest # TODO: change image location ghcr.io/shs-it/<projectname>:latest
+    image: ghcr.io/jexxa-projects/jexxatemplate:latest # TODO: change image location ghcr.io/<your profile>/<projectname>:latest
     ports:
       - "7508:7500" # TODO: Adjust HTTP Port "<free HTTP-Port>:7500"
     depends_on:
