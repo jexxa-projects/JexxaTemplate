@@ -88,16 +88,16 @@ java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  
 Passwords and credentials are a crucial part of any production environment which must not be stored in a repository.
 Jexxa itself addresses this issue by using two different properties files.
 
-* [`jexxa-application.properties`](src/main/resources/jexxa-application.properties): By default, this is the properties file used in production. Therefore, it does not
+*   [`jexxa-application.properties`](src/main/resources/jexxa-application.properties): By default, this is the properties file used in production. Therefore, it does not
   include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
   into your containers in a secure way.
 
-* [`jexxa-test.properties`](src/test/resources/jexxa-test.properties):
-    * This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
-    * Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-    * This properties-file is automatically loaded if you use `JexxaTest` for your tests.
+*   [`jexxa-test.properties`](src/test/resources/jexxa-test.properties):
+    *   This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
+    *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
+    *   This properties-file is automatically loaded if you use `JexxaTest` for your tests.
 
-* [`jexxa-local.properties`](src/test/resources/jexxa-local.properties):
+*   [`jexxa-local.properties`](src/test/resources/jexxa-local.properties):
     *   This file can be used in case you would not like to use any infrastructure service such as a DB. 
     *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
 
