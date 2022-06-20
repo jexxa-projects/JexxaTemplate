@@ -78,7 +78,8 @@ To build the template with integration tests you need to run a postgres database
 If this is not available locally, you can enter the following command to build and run the application: 
 
 ```shell
-mvn clean install -PintegrationTests
+mvn clean install -P '!integrationTests'
+
 
 java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  target/jexxatemplate-jar-with-dependencies.jar
 ```
