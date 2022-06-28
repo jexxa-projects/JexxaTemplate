@@ -7,18 +7,9 @@ import io.jexxa.jexxatemplate.JexxaTemplate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
-import static io.jexxa.jexxatemplate.architecture.PackageName.AGGREGATE;
-import static io.jexxa.jexxatemplate.architecture.PackageName.APPLICATIONSERVICE;
-import static io.jexxa.jexxatemplate.architecture.PackageName.BUSINESS_EXCEPTION;
-import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_EVENT;
-import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_PROCESS_SERVICE;
-import static io.jexxa.jexxatemplate.architecture.PackageName.DOMAIN_SERVICE;
-import static io.jexxa.jexxatemplate.architecture.PackageName.DRIVEN_ADAPTER;
-import static io.jexxa.jexxatemplate.architecture.PackageName.DRIVING_ADAPTER;
-import static io.jexxa.jexxatemplate.architecture.PackageName.INFRASTRUCTURE;
-import static io.jexxa.jexxatemplate.architecture.PackageName.VALUE_OBJECT;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
+import static io.jexxa.jexxatemplate.architecture.PackageName.*;
 
 class OnionArchitectureTest {
     private static JavaClasses importedClasses;
@@ -66,12 +57,28 @@ class OnionArchitectureTest {
     }
 
     @Test
-    void testDomainServiceDependencies() {
+    void testReturnTypeOfApplicationCore() {
+        // Arrange -
+
+        // Act
+        var invalidReturnType = noMethods().that()
+                .areDeclaredInClassesThat(resideInAnyPackage(APPLICATIONSERVICE, DOMAIN_PROCESS_SERVICE))
+                .and().arePublic()
+                .should().haveRawReturnType(resideInAnyPackage(AGGREGATE))
+                .because("Aggregates contain the business logic and must not be return values of public methods of a application- or domain process service!");
+
+
+        //Assert
+        invalidReturnType.check(importedClasses);
+    }
+
+    @Test
+    void testApplicationServiceReturnValue() {
         // Arrange -
 
         // Act
         var invalidAccess = noClasses()
-                .that().resideInAPackage(DOMAIN_SERVICE)
+                .that().resideInAPackage(APPLICATIONSERVICE)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(APPLICATIONSERVICE, INFRASTRUCTURE)
                 .allowEmptyShould(true);
