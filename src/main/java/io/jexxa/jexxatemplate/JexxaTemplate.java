@@ -1,8 +1,8 @@
 package io.jexxa.jexxatemplate;
 
+import io.jexxa.addend.applicationcore.ApplicationService;
 import io.jexxa.core.JexxaMain;
 import io.jexxa.infrastructure.drivingadapter.rest.RESTfulRPCAdapter;
-import io.jexxa.jexxatemplate.applicationservice.BookStoreService;
 import io.jexxa.jexxatemplate.domainservice.ReferenceLibrary;
 
 public final class JexxaTemplate
@@ -16,7 +16,7 @@ public final class JexxaTemplate
                 .bootstrap(ReferenceLibrary.class).with(ReferenceLibrary::addLatestBooks)
 
                 //bind all application services and the bounded context to driving adapters
-                .bind(RESTfulRPCAdapter.class).to(BookStoreService.class)
+                .bind(RESTfulRPCAdapter.class).toAnnotation(ApplicationService.class)
                 .bind(RESTfulRPCAdapter.class).to(jexxaMain.getBoundedContext())
 
                 //run the application
