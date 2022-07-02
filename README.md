@@ -23,6 +23,7 @@ This template can be used to start your own Jexxa application
 *   Predefined architectural tests that can be used without any further extensions: 
     *   [PatternLanguageTest](src/test/java/io/jexxa/jexxatemplate/architecture/PatternLanguageTest.java) validates the correct annotation of your application using project [Addend](http://addend.jexxa.io/). 
     *   [OnionArchitectureTest](src/test/java/io/jexxa/jexxatemplate/architecture/OnionArchitectureTest.java) validates dependencies between packages of your application.
+    *   [StatelessApplicationCoreTest](src/test/java/io/jexxa/jexxatemplate/architecture/StatelessApplicationCoreTest.java) validates that your application core is stateless (except of your aggregates) and does not expose aggregates.
 
 *   Predefined CI/CD scripts for GitHub including automatic dependency updates. 
  
@@ -43,8 +44,7 @@ This template can be used to start your own Jexxa application
 *   Checkout the new project in your favorite IDE
 
 *   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
-
-*   Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
+    *   Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
 
 *   Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
 

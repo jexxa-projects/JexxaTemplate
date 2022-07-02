@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
 
-  ### Anwendung ###
+  ### Application ###
 
   JexxaTemplate: # TODO: Change <ProjectName> (CamelCase)
     image: ghcr.io/jexxa-projects/jexxatemplate:latest # TODO: change image location ghcr.io/<your profile>/<projectname>:latest
@@ -38,7 +38,7 @@ services:
 
 
 
-  ### Infrastruktur ###
+  ### Infrastructure ###
 
   ActiveMQ:
     image: rmohr/activemq
