@@ -77,9 +77,9 @@ mvn clean install
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 
 ### Maven (without integration tests)
+If you do not have a running database and messaging bus running locally, you can enter the following command to build and run the application:
+Note: In this case, not integration tests are running.
 
-To build the template with integration tests you need to run a postgres database and JMS message broker.
-If this is not available locally, you can enter the following command to build and run the application: 
 
 ```shell
 mvn clean install -P '!integrationTests'
