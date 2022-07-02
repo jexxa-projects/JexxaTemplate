@@ -7,8 +7,8 @@ import io.jexxa.jexxatemplate.JexxaTemplate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static io.jexxa.jexxatemplate.architecture.PackageName.*;
 
 class OnionArchitectureTest {
@@ -50,42 +50,14 @@ class OnionArchitectureTest {
         var invalidAccess = noClasses()
                 .that().resideInAPackage(APPLICATIONSERVICE)
                 .should().dependOnClassesThat()
-                .resideInAnyPackage(APPLICATIONSERVICE, INFRASTRUCTURE);
-
-        //Assert
-        invalidAccess.check(importedClasses);
-    }
-
-    @Test
-    void testReturnTypeOfApplicationCore() {
-        // Arrange -
-
-        // Act
-        var invalidReturnType = noMethods().that()
-                .areDeclaredInClassesThat(resideInAnyPackage(APPLICATIONSERVICE, DOMAIN_PROCESS_SERVICE))
-                .and().arePublic()
-                .should().haveRawReturnType(resideInAnyPackage(AGGREGATE))
-                .because("Aggregates contain the business logic and must not be return values of public methods of a application- or domain process service!");
-
-
-        //Assert
-        invalidReturnType.check(importedClasses);
-    }
-
-    @Test
-    void testApplicationServiceReturnValue() {
-        // Arrange -
-
-        // Act
-        var invalidAccess = noClasses()
-                .that().resideInAPackage(APPLICATIONSERVICE)
-                .should().dependOnClassesThat()
                 .resideInAnyPackage(APPLICATIONSERVICE, INFRASTRUCTURE)
-                .allowEmptyShould(true);
+                .allowEmptyShould(true)
+                .because("An ApplicationService must not depend on other ApplicationServices or the infrastructure");
 
         //Assert
         invalidAccess.check(importedClasses);
     }
+
 
     @Test
     void testDomainProcessServiceDependencies() {
@@ -96,7 +68,9 @@ class OnionArchitectureTest {
                 .that().resideInAPackage(DOMAIN_PROCESS_SERVICE)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(APPLICATIONSERVICE, INFRASTRUCTURE)
-                .allowEmptyShould(true);
+                .allowEmptyShould(true)
+                .because("A DomainProcessService must not depend on an ApplicationServices or the infrastructure");
+
 
         //Assert
         invalidAccess.check(importedClasses);
@@ -113,7 +87,8 @@ class OnionArchitectureTest {
                 .resideInAnyPackage(APPLICATIONSERVICE,
                         DOMAIN_SERVICE,
                         DOMAIN_PROCESS_SERVICE,
-                        INFRASTRUCTURE);
+                        INFRASTRUCTURE)
+                .because("An Aggregate must not depend on any Service or the infrastructure");
 
         //Assert
         invalidAccess.check(importedClasses);
@@ -125,12 +100,17 @@ class OnionArchitectureTest {
 
         // Act
         var invalidAccess = noClasses()
-                .that().resideInAPackage(AGGREGATE)
+                .that().resideInAPackage(VALUE_OBJECT)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(APPLICATIONSERVICE,
                         DOMAIN_SERVICE,
                         DOMAIN_PROCESS_SERVICE,
-                        INFRASTRUCTURE);
+                        INFRASTRUCTURE,
+                        AGGREGATE,
+                        DOMAIN_EVENT,
+                        BUSINESS_EXCEPTION)
+                .because("A ValueObject must not depend on any other classes of the application except of ValueObjects");
+
 
         //Assert
         invalidAccess.check(importedClasses);
