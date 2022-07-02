@@ -105,6 +105,7 @@ class PatternLanguageTest {
                 .that().resideInAnyPackage(VALUE_OBJECT)
                 .should().beAnnotatedWith(ValueObject.class)
                 .orShould().beAnnotatedWith(ValueObjectFactory.class)
+                .orShould().beEnums()
                 .allowEmptyShould(true);
 
         //Assert
@@ -179,6 +180,7 @@ class PatternLanguageTest {
                 .that().resideInAnyPackage(VALUE_OBJECT)
                 .and().areNotAnnotatedWith(ValueObjectFactory.class)
                 .should().beRecords()
+                .orShould().beEnums()
                 .allowEmptyShould(true);
 
         //Assert

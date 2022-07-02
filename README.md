@@ -73,8 +73,6 @@ If you have docker running, you can use the [developer-stack.yml](deploy/develop
 
 ```shell
 mvn clean install
-
-java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
 ```
 Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
 
