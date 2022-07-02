@@ -27,6 +27,4 @@ public final class JexxaTemplate
     {
         //Private constructor since we only offer main
     }
-
-
 }
