@@ -7,8 +7,8 @@ This template can be used to start your own Jexxa application
 ## Requirements
 
 *   Java17 installed
-*   Writing Java code and build your programs using maven
-*   (Optional): Docker configured in swarm mode if you want to run the results in a docker environment. See [here](README-CICD.md) for more information.   
+*   IDE with maven support 
+*   (Optional) Docker or Kubernetes if you want to run your application in a container. See [here](README-CICD.md) for more information.   
 
 ## Features
 
