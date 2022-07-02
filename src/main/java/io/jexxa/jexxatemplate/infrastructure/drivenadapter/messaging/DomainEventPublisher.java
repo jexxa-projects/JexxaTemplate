@@ -26,8 +26,8 @@ public class DomainEventPublisher implements IDomainEventPublisher
         Objects.requireNonNull(domainEvent);
         messageSender
                 .send(domainEvent)
-                .addHeader("Type", domainEvent.getClass().getSimpleName())
                 .toTopic("BookStoreTopic")
+                .addHeader("Type", domainEvent.getClass().getSimpleName())
                 .asJson();
     }
 }
