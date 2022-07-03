@@ -40,14 +40,16 @@ This template can be used to start your own Jexxa application
     ```shell
     mvn clean install -P '!integrationTests'
 
-    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  target/jexxatemplate-jar-with-dependencies.jar
+    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties" \
+              target/jexxatemplate-jar-with-dependencies.jar
     ```
 
 *   [Optional] **With** running Developer Stack:
     ```shell
     mvn clean install
     
-    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
+    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties" \ 
+              target/jexxatemplate-jar-with-dependencies.jar
     ```
 
 *   See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README.md#execute-some-commands-using-curl) how to use the application from command line with `curl`
