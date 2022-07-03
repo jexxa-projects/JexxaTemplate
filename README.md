@@ -6,18 +6,16 @@ This template can be used to start your own Jexxa application
 
 ## Requirements
 
-*   Java17 installed
+*   Java 17+ installed
 *   IDE with maven support 
 *   [Optional] Docker or Kubernetes if you want to run your application in a container. See [here](README-CICD.md) for more information.   
-*   [Optional] A running [developer stack](deploy/developerStack.yml) providing a Postgres database and ActiveMQ broker
+*   [Optional] A running [developer stack](deploy/developerStack.yml) providing a Postgres database, ActiveMQ broker, and Swagger-UI 
 
 ## Features
 
 *   Build your first Jexxa-project as self-contained jar and/or docker image
     
-*   [Template for unit tests](src/test/java/io/jexxa/jexxatemplate/applicationservice/BookStoreServiceTest.java)
-
-*   [Template for integration tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java)
+*   Template for [Unit-](src/test/java/io/jexxa/jexxatemplate/applicationservice/BookStoreServiceTest.java) and [Integration tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java)
 
 *   Predefined architectural tests for: 
     *   [Pattern Language](src/test/java/io/jexxa/jexxatemplate/architecture/PatternLanguageTest.java) to validate the correct annotation of your application using project [Addend](http://addend.jexxa.io/) 
@@ -56,14 +54,18 @@ This template can be used to start your own Jexxa application
     java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
     ```
 
+*   See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README.md#execute-some-commands-using-curl) how to use the application from command line with `curl`
+
+*   [Optional] See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README.md#execute-some-commands-using-curl) how to use the application with Swagger-UI
 
 ## Start Developing your own Project
 
-### Adjust Project Name
-*   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
-    *   Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
-
+### Adjust Project 
 *   Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
+
+*   Refactor/Rename the GroupId (directory) `io.jexxa.jexxatemplate` into `com.github.<github-account>` for example within your IDE
+
+*   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
 
 *   Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
 
@@ -76,13 +78,12 @@ This template can be used to start your own Jexxa application
 
 *   In [jexxa-test.properties](src/test/resources/jexxa-test.properties) adjust all TODOs
 
-### Adjust Release Version
+*   Adjust Release Version
+    ```shell
+    mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
+    ```
 
-```shell
-mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
-```
 
-
-### Use the CI/CD Pipeline  
+### Set up the CI/CD Pipeline  
 
 To see how to run your application together with a CI/CD pipeline see [here](README-CICD.md).
