@@ -28,13 +28,9 @@ This template can be used to start your own Jexxa application
 
 *   In GitHub press `Use this template` 
 
-*   Enter a `project name` for the repository. This template uses following convention
-
-*   Project name of the repository should be equal to the name of the java application defined in maven 
-    *   Name of the application should be equal the name of java class providing the main method
+*   Enter a `project name` for the repository. This template uses following convention:
     *   Project name should be written in camel case notation, such as `JexxaTemplate`
-
-*   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
+    *   Project name of the repository is equal to the name of the java application
 
 ## Build the Project
 
@@ -58,7 +54,7 @@ This template can be used to start your own Jexxa application
 
 *   [Optional] See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README-OPENAPI.md#explore-openapi) how to use the application with Swagger-UI
 
-## Start Developing your own Project
+## Start Developing your Project
 
 ### Adjust Project 
 *   Refactor/Rename file `JexxaTemplate.java` into `<ProjektName>.java` within your IDE
