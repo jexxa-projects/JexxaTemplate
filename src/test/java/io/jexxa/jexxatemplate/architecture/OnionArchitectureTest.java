@@ -11,6 +11,31 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static io.jexxa.jexxatemplate.architecture.PackageName.*;
 
+/**
+ * These tests validate the access direction af an onion architecture which is as follows:
+ *
+ * @startuml
+ * skinparam PackagePadding 0
+ * 'skinparam linetype ortho
+ * top to bottom direction
+
+ * package ApplicationCore  #DDDDDD {
+ *   [ApplicationService]
+ *   [DomainProcessService]
+ *   [DomainService]
+ *   [Domain]
+ * }
+ *
+ * [ApplicationService] -down-> [DomainProcessService]
+ * [ApplicationService] -down-> [DomainService]
+ * [ApplicationService] -down-> [Domain]
+ * [DomainProcessService] -down-> [DomainService]
+ * [DomainProcessService] -down-> [Domain]
+ * [DomainService] ----r-> [Domain]
+ *
+ * @enduml
+ * ....
+ */
 class OnionArchitectureTest {
     private static JavaClasses importedClasses;
 

@@ -1,5 +1,10 @@
 package io.jexxa.jexxatemplate.architecture;
 
+/**
+ * This class defines the package names to validate the onion architecture.
+ *
+ * In case you use another package structure for your application, please adjust these packages accordingly.
+ */
 class PackageName
 {
     public static final String APPLICATIONSERVICE = "..applicationservice";
