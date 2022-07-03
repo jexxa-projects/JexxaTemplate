@@ -70,15 +70,15 @@ This template can be used to start your own Jexxa application
 *   Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
 
 *   In README.md:
-    *   search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
-    *   search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
-    *   adjust the badges (first two lines)
+    *   Search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
+    *   Search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
+    *   Adjust the badges (first two lines)
 
 *   In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
 
 *   In [jexxa-test.properties](src/test/resources/jexxa-test.properties) adjust all TODOs
 
-*   Adjust Release Version
+*   Adjust release version
     ```shell
     mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
     ```
