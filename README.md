@@ -8,26 +8,25 @@ This template can be used to start your own Jexxa application
 
 *   Java17 installed
 *   IDE with maven support 
-*   (Optional) Docker or Kubernetes if you want to run your application in a container. See [here](README-CICD.md) for more information.   
+*   [Optional] Docker or Kubernetes if you want to run your application in a container. See [here](README-CICD.md) for more information.   
+*   [Optional] A running [developer stack](deploy/developerStack.yml) providing a Postgres database and ActiveMQ broker
 
 ## Features
 
-*   Simple maven project to start your first Jexxa-project, build it as self-contained jar and/or docker image.
+*   Build your first Jexxa-project as self-contained jar and/or docker image
+    
+*   [Template for unit tests](src/test/java/io/jexxa/jexxatemplate/applicationservice/BookStoreServiceTest.java)
 
-*   Predefined package structure for a ports-and-adapter architecture in the context of domain driven design.
+*   [Template for integration tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java)
 
-*   A template for unit tests to validate your domain logic. [This template can be used for your own tests](src/test/java/io/jexxa/jexxatemplate/applicationservice/BookStoreServiceTest.java).
+*   Predefined architectural tests for: 
+    *   [Pattern Language](src/test/java/io/jexxa/jexxatemplate/architecture/PatternLanguageTest.java) to validate the correct annotation of your application using project [Addend](http://addend.jexxa.io/) 
+    *   [Onion Architecture](src/test/java/io/jexxa/jexxatemplate/architecture/OnionArchitectureTest.java) to validates dependencies between packages of your application
+    *   [Usage of Aggregates](src/test/java/io/jexxa/jexxatemplate/architecture/StatelessApplicationCoreTest.java) to validate that they are not exposed
 
-*   A template for integration tests to run your tests against the running application. [This template can be used for your own tests](src/test/java/io/jexxa/jexxatemplate/integration/applicationservice/JexxaTemplateIT.java).
-
-*   Predefined architectural tests that can be used without any further extensions: 
-    *   [PatternLanguageTest](src/test/java/io/jexxa/jexxatemplate/architecture/PatternLanguageTest.java) validates the correct annotation of your application using project [Addend](http://addend.jexxa.io/). 
-    *   [OnionArchitectureTest](src/test/java/io/jexxa/jexxatemplate/architecture/OnionArchitectureTest.java) validates dependencies between packages of your application.
-    *   [StatelessApplicationCoreTest](src/test/java/io/jexxa/jexxatemplate/architecture/StatelessApplicationCoreTest.java) validates that your application core is stateless (except of your aggregates) and does not expose aggregates.
-
-*   Predefined CI/CD scripts for GitHub including automatic dependency updates. 
+*   Predefined CI/CD scripts for GitHub including automatic dependency updates 
  
-## Create Project
+## Create new Project from Template
 
 *   In GitHub press `Use this template` 
 
@@ -39,10 +38,28 @@ This template can be used to start your own Jexxa application
 
 *   After creating a new project, the GitHub-Action `Maven-Test Build' should successfully run 
 
-## Adjust Project
+## Build the Project
 
 *   Checkout the new project in your favorite IDE
 
+*   Without running Developer Stack:
+    ```shell
+    mvn clean install -P '!integrationTests'
+
+    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  target/jexxatemplate-jar-with-dependencies.jar
+    ```
+
+*   [Optional] **With** running Developer Stack:
+    ```shell
+    mvn clean install
+    
+    java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-test.properties"  target/jexxatemplate-jar-with-dependencies.jar
+    ```
+
+
+## Start Developing your own Project
+
+### Adjust Project Name
 *   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
     *   Optional: If you adjust GroupId `<groupId>io.jexxa.jexxatemplate</groupId>` please also refactor the directory `io.jexxa.jexxatemplate` within your IDE
 
@@ -59,53 +76,13 @@ This template can be used to start your own Jexxa application
 
 *   In [jexxa-test.properties](src/test/resources/jexxa-test.properties) adjust all TODOs
 
-## Adjust Release Version
+### Adjust Release Version
 
 ```shell
 mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
 ```
 
-## Build and run the Project
 
-### Maven (with integration tests)
-To build the template with integration tests you need to run a postgres database and JMS message broker.
-If you have docker running, you can use the [developer-stack.yml](deploy/developerStack.yml) to set up these infrastructure services. Then, you can enter the following command to build the project with integration tests und run the application:
+### Use the CI/CD Pipeline  
 
-```shell
-mvn clean install
-```
-Note: If you search / replaced this file, you should see now `./target/<projectname>-jar-with-dependencies.jar`
-
-### Maven (without integration tests)
-If you do not have a running database and messaging bus running locally, you can enter the following command to build and run the application:
-Note: In this case, not integration tests are running.
-
-
-```shell
-mvn clean install -P '!integrationTests'
-
-
-java -jar "-Dio.jexxa.config.import=src/test/resources/jexxa-local.properties"  target/jexxatemplate-jar-with-dependencies.jar
-```
-
-### Properties files
-
-Passwords and credentials are a crucial part of any production environment which must not be stored in a repository.
-Jexxa itself addresses this issue by using two different properties files.
-
-*   [`jexxa-application.properties`](src/main/resources/jexxa-application.properties): By default, this is the properties file used in production. Therefore, it does not
-  include any secrets. Instead, you define a path to a secret file. The clustering environment then mounts these secrets
-  into your containers in a secure way.
-
-*   [`jexxa-test.properties`](src/test/resources/jexxa-test.properties):
-    *   This file can be used by developers to define differences between development and production environment. For example, it can include credentials that are only used on the developer machine itself and can be stored in a repository.
-    *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-    *   This properties-file is automatically loaded if you use `JexxaTest` for your tests.
-
-*   [`jexxa-local.properties`](src/test/resources/jexxa-local.properties):
-    *   This file can be used in case you would not like to use any infrastructure service such as a DB. 
-    *   Since Jexxa loads the `jexxa-application.properties` by default, you just need to define the differences.
-
-### Run the entire environment 
-
-To see how to Run the entire application environment in a docker-swarm environment follow the [README-DOCKER.md](README-CICD.md).
+To see how to run your application together with a CI/CD pipeline see [here](README-CICD.md).
