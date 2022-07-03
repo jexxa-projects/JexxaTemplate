@@ -63,24 +63,21 @@ This template can be used to start your own Jexxa application
 
 *   Refactor/Rename the GroupId (directory) `io.jexxa.jexxatemplate` into `com.github.<your-github-account>` for example within your IDE
 
-*   Adjust all entries in [pom.xml](pom.xml) marked with `TODO (REQUIRED)`
-
-*   Adjust all TODOs in [docker-compose.yml](deploy/docker-compose.yml)
+*   Adjust all sections marked with TODO (and remove TODO statement) in : 
+    *    [pom.xml](pom.xml) 
+    *    [jexxa-application.properties](src/main/resources/jexxa-application.properties) 
+    *    [jexxa-test.properties](src/test/resources/jexxa-test.properties)
+    *    [docker-compose.yml](deploy/docker-compose.yml)
 
 *   In README.md:
     *   Search/replace (case-sensitive) `JexxaTemplate` by `<ProjectName>`
     *   Search/replace (case-sensitive) `jexxatemplate` by `<projectname>`
     *   Adjust the badges (first two lines)
 
-*   In [jexxa-application.properties](src/main/resources/jexxa-application.properties) adjust all TODOs
-
-*   In [jexxa-test.properties](src/test/resources/jexxa-test.properties) adjust all TODOs
-
 *   Adjust release version
     ```shell
     mvn versions:set -DnewVersion='0.1.0-SNAPSHOT'
     ```
-
 
 ### Set up the CI/CD Pipeline  
 
