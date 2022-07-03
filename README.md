@@ -56,7 +56,7 @@ This template can be used to start your own Jexxa application
 
 *   See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README.md#execute-some-commands-using-curl) how to use the application from command line with `curl`
 
-*   [Optional] See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README.md#execute-some-commands-using-curl) how to use the application with Swagger-UI
+*   [Optional] See [here](https://github.com/jexxa-projects/JexxaTutorials/blob/main/BookStore/README-OPENAPI.md#explore-openapi) how to use the application with Swagger-UI
 
 ## Start Developing your own Project
 
