@@ -1,5 +1,6 @@
 package io.jexxa.jexxatemplate.infrastructure.drivenadapter.messaging;
 
+import io.jexxa.jexxatemplate.domain.domainevent.BookSoldOut;
 import io.jexxa.jexxatemplate.domainservice.IDomainEventPublisher;
 import io.jexxa.addend.infrastructure.DrivenAdapter;
 import io.jexxa.infrastructure.drivenadapterstrategy.messaging.MessageSender;
@@ -21,7 +22,7 @@ public class DomainEventPublisher implements IDomainEventPublisher
     }
 
     @Override
-    public <T> void publish(T domainEvent)
+    public void publish(BookSoldOut domainEvent)
     {
         Objects.requireNonNull(domainEvent);
         messageSender

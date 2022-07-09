@@ -10,6 +10,7 @@ import io.jexxa.addend.applicationcore.ApplicationService;
 import java.util.List;
 import java.util.Objects;
 
+import static io.jexxa.jexxatemplate.domain.aggregate.Book.newBook;
 import static io.jexxa.jexxatemplate.domain.valueobject.ISBN13.createISBN;
 
 @SuppressWarnings("unused")
@@ -33,7 +34,7 @@ public class BookStoreService
         var result = ibookRepository.search( validatedISBN );
         if ( result.isEmpty() )
         {
-            ibookRepository.add(Book.newBook( validatedISBN ));
+            ibookRepository.add(newBook( validatedISBN ));
         }
 
         var book = ibookRepository.get(validatedISBN);

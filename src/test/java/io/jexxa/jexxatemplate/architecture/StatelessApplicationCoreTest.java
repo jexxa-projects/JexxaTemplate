@@ -1,11 +1,17 @@
 package io.jexxa.jexxatemplate.architecture;
 
+import com.tngtech.archunit.base.DescribedPredicate;
+import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
+import io.jexxa.addend.applicationcore.Aggregate;
+import io.jexxa.addend.applicationcore.Repository;
 import io.jexxa.jexxatemplate.JexxaTemplate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAPackage;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
@@ -23,20 +29,37 @@ class StatelessApplicationCoreTest {
     }
 
     @Test
-    void testApplicationCoreDoesNotReturnAggregates() {
+    void testOnlyRepositoriesReturnAggregates() {
         // Arrange -
 
         // Act
         var invalidReturnType = noMethods().that()
-                .areDeclaredInClassesThat(resideInAnyPackage(APPLICATIONSERVICE, DOMAIN_PROCESS_SERVICE))
-                .and().arePublic()
+                .areDeclaredInClassesThat(resideInAnyPackage(APPLICATIONSERVICE, DOMAIN_PROCESS_SERVICE, DOMAIN_SERVICE))
+                .and().areDeclaredInClassesThat().areNotAnnotatedWith(Repository.class)
                 .should().haveRawReturnType(resideInAnyPackage(AGGREGATE))
-                .because("Aggregates contain the business logic and must not be return values of public methods of a application- or domain process service!");
+                .because("Aggregates contain the business logic and can only be returned by a Repository!");
 
 
         //Assert
         invalidReturnType.check(importedClasses);
     }
+
+    @Test
+    void testOnlyRepositoriesAcceptAggregates() {
+        // Arrange -
+
+        // Act
+        var invalidReturnType = noMethods().that()
+                .areDeclaredInClassesThat(resideInAnyPackage(APPLICATIONSERVICE, DOMAIN_PROCESS_SERVICE, DOMAIN_SERVICE))
+                .and().areDeclaredInClassesThat().areNotAnnotatedWith(Repository.class)
+                .should().haveRawParameterTypes(thatAreAggregates())
+                .because("Aggregates contain the business logic and can only be returned by a Repository!");
+
+
+        //Assert
+        invalidReturnType.check(importedClasses);
+    }
+
 
     @Test
     void testFinalFields() {
@@ -69,4 +92,12 @@ class StatelessApplicationCoreTest {
         invalidReturnType.check(importedClasses);
     }
 
+    private static DescribedPredicate<List<JavaClass>> thatAreAggregates() {
+        return new DescribedPredicate<>("one parameter of type is an Aggregate") {
+            @Override
+            public boolean apply(List<JavaClass> input) {
+                return input.stream().anyMatch(element -> element.isAnnotatedWith(Aggregate.class));
+            }
+        };
+    }
 }
