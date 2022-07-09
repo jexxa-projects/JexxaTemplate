@@ -26,7 +26,7 @@ This template can be used to start your own Jexxa application
  
 ## Create new Project from Template
 
-*   In GitHub press `Use this template` 
+*   In GitHub press `Use this template` (requires GitHub account) or fork the project  
 
 *   Enter a `project name` for the repository. This template uses following convention:
     *   Project name should be written in camel case notation, such as `JexxaTemplate`
