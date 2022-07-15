@@ -101,7 +101,7 @@
     <maven.build.helper.version>3.3.0</maven.build.helper.version>
     <maven.jib.plugin>3.2.1</maven.jib.plugin>
     <maven.shade.plugin>3.3.0</maven.shade.plugin>
-    <maven.exec.plugin>3.0.0</maven.exec.plugin>
+    <maven.exec.plugin>3.1.0</maven.exec.plugin>
 
     <context.command.start>
           -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${maven.jacoco.plugin}/org.jacoco.agent-${maven.jacoco.plugin}-runtime.jar=destfile=jacoco-it-app.exec,port=6300,output=tcpserver
