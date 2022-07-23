@@ -1,6 +1,6 @@
 package io.jexxa.jexxatemplate.infrastructure.drivenadapter.messaging;
 
-import io.jexxa.jexxatemplate.domain.domainevent.BookSoldOut;
+import io.jexxa.jexxatemplate.domain.book.BookSoldOut;
 import io.jexxa.jexxatemplate.domainservice.IDomainEventPublisher;
 import io.jexxa.addend.infrastructure.DrivenAdapter;
 import io.jexxa.infrastructure.drivenadapterstrategy.messaging.MessageSender;

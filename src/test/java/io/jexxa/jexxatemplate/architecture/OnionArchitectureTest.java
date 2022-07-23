@@ -53,10 +53,7 @@ class OnionArchitectureTest {
                         APPLICATIONSERVICE,
                         DOMAIN_PROCESS_SERVICE,
                         DOMAIN_SERVICE,
-                        AGGREGATE,
-                        BUSINESS_EXCEPTION,
-                        DOMAIN_EVENT,
-                        VALUE_OBJECT,
+                        DOMAIN,
                         INFRASTRUCTURE)
                 .orShould().haveFullyQualifiedName(JexxaTemplate.class.getName());
 
@@ -99,60 +96,18 @@ class OnionArchitectureTest {
     }
 
     @Test
-    void testAggregateDependencies() {
+    void testDomainDependencies() {
         // Arrange -
 
         // Act
         var invalidAccess = noClasses()
-                .that().resideInAPackage(AGGREGATE)
+                .that().resideInAPackage(DOMAIN)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(APPLICATIONSERVICE,
                         DOMAIN_SERVICE,
                         DOMAIN_PROCESS_SERVICE,
                         INFRASTRUCTURE)
                 .because("An Aggregate must not depend on any Service or the infrastructure");
-
-        //Assert
-        invalidAccess.check(importedClasses);
-    }
-
-    @Test
-    void testValueObjectDependencies() {
-        // Arrange -
-
-        // Act
-        var invalidAccess = noClasses()
-                .that().resideInAPackage(VALUE_OBJECT)
-                .should().dependOnClassesThat()
-                .resideInAnyPackage(APPLICATIONSERVICE,
-                        DOMAIN_SERVICE,
-                        DOMAIN_PROCESS_SERVICE,
-                        INFRASTRUCTURE,
-                        AGGREGATE,
-                        DOMAIN_EVENT,
-                        BUSINESS_EXCEPTION)
-                .because("A ValueObject must not depend on any other classes of the application except of ValueObjects");
-
-
-        //Assert
-        invalidAccess.check(importedClasses);
-    }
-
-    @Test
-    void testDomainEventDependencies() {
-        // Arrange -
-
-        // Act
-        var invalidAccess = noClasses()
-                .that().resideInAPackage(DOMAIN_EVENT)
-                .should().dependOnClassesThat()
-                .resideInAnyPackage(
-                        APPLICATIONSERVICE,
-                        BUSINESS_EXCEPTION,
-                        AGGREGATE,
-                        DOMAIN_SERVICE,
-                        DOMAIN_PROCESS_SERVICE,
-                        INFRASTRUCTURE);
 
         //Assert
         invalidAccess.check(importedClasses);

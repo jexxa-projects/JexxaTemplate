@@ -1,6 +1,5 @@
-package io.jexxa.jexxatemplate.domain.domainevent;
+package io.jexxa.jexxatemplate.domain.book;
 
-import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
 import io.jexxa.addend.applicationcore.DomainEvent;
 
 import java.util.Objects;

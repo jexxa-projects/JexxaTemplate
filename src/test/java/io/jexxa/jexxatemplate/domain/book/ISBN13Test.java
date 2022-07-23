@@ -1,4 +1,4 @@
-package io.jexxa.jexxatemplate.domain.valueobject;
+package io.jexxa.jexxatemplate.domain.book;
 
 import org.junit.jupiter.api.Test;
 

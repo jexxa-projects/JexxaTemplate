@@ -1,4 +1,4 @@
-package io.jexxa.jexxatemplate.domain.valueobject;
+package io.jexxa.jexxatemplate.domain.book;
 
 import io.jexxa.addend.applicationcore.ValueObject;
 import io.jexxa.addend.applicationcore.ValueObjectFactory;

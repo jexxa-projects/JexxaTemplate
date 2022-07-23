@@ -1,8 +1,5 @@
-package io.jexxa.jexxatemplate.domain.aggregate;
+package io.jexxa.jexxatemplate.domain.book;
 
-import io.jexxa.jexxatemplate.domain.businessexception.BookNotInStockException;
-import io.jexxa.jexxatemplate.domain.domainevent.BookSoldOut;
-import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
 import io.jexxa.addend.applicationcore.Aggregate;
 import io.jexxa.addend.applicationcore.AggregateFactory;
 import io.jexxa.addend.applicationcore.AggregateID;

@@ -1,9 +1,9 @@
 package io.jexxa.jexxatemplate.infrastructure.drivenadapter.persistence;
 
 
-import io.jexxa.jexxatemplate.domain.aggregate.Book;
-import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
-import io.jexxa.jexxatemplate.domainservice.IBookRepository;
+import io.jexxa.jexxatemplate.domain.book.Book;
+import io.jexxa.jexxatemplate.domain.book.ISBN13;
+import io.jexxa.jexxatemplate.domain.book.IBookRepository;
 import io.jexxa.addend.infrastructure.DrivenAdapter;
 import io.jexxa.infrastructure.drivenadapterstrategy.persistence.repository.IRepository;
 

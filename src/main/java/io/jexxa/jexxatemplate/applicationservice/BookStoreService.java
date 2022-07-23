@@ -1,17 +1,17 @@
 package io.jexxa.jexxatemplate.applicationservice;
 
-import io.jexxa.jexxatemplate.domain.aggregate.Book;
-import io.jexxa.jexxatemplate.domain.businessexception.BookNotInStockException;
-import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
-import io.jexxa.jexxatemplate.domainservice.IBookRepository;
+import io.jexxa.jexxatemplate.domain.book.Book;
+import io.jexxa.jexxatemplate.domain.book.BookNotInStockException;
+import io.jexxa.jexxatemplate.domain.book.ISBN13;
+import io.jexxa.jexxatemplate.domain.book.IBookRepository;
 import io.jexxa.jexxatemplate.domainservice.IDomainEventPublisher;
 import io.jexxa.addend.applicationcore.ApplicationService;
 
 import java.util.List;
 import java.util.Objects;
 
-import static io.jexxa.jexxatemplate.domain.aggregate.Book.newBook;
-import static io.jexxa.jexxatemplate.domain.valueobject.ISBN13.createISBN;
+import static io.jexxa.jexxatemplate.domain.book.Book.newBook;
+import static io.jexxa.jexxatemplate.domain.book.ISBN13.createISBN;
 
 @SuppressWarnings("unused")
 @ApplicationService

@@ -1,13 +1,14 @@
 package io.jexxa.jexxatemplate.domainservice;
 
 import io.jexxa.addend.applicationcore.DomainService;
-import io.jexxa.jexxatemplate.domain.aggregate.Book;
-import io.jexxa.jexxatemplate.domain.valueobject.ISBN13;
+import io.jexxa.jexxatemplate.domain.book.Book;
+import io.jexxa.jexxatemplate.domain.book.IBookRepository;
+import io.jexxa.jexxatemplate.domain.book.ISBN13;
 
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static io.jexxa.jexxatemplate.domain.valueobject.ISBN13.createISBN;
+import static io.jexxa.jexxatemplate.domain.book.ISBN13.createISBN;
 
 @DomainService
 public class ReferenceLibrary
